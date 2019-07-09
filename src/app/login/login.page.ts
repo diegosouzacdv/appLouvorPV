@@ -37,17 +37,21 @@ export class LoginPage implements OnInit {
   
   }
   public async login(){
-    console.log(this.userLogin)
-    await this.presentLoading();
-    try {
-      await this.authService.login(this.userLogin)
-      this.navCtrl.navigateRoot('/tabs/tab1')
-    } catch (error) {
-      console.log(error)
-      this.errorHandler.handle(error.code)
-    } finally {
-      this.loading.dismiss()
-    }
+   await this.presentLoading();
+   try {
+    await this.authService.authenticate(this.userLogin)
+        .subscribe(response => {
+          console.log(response.headers.get('Authorization'))
+          this.navCtrl.navigateRoot('/tabs/tab1')
+          this.loading.dismiss();
+        },
+        error => {
+        })
+      }finally {
+
+        this.loading.dismiss();
+      }
+   
   }
 
   public async register(){
