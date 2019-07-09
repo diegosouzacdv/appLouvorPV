@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, MenuController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
-import { User } from './../interfaces/user';
+import { User } from '../model/user';
 import { AuthService } from './../services/auth.service';
 import { ErrorHandlerServiceService } from '../interceptors/error-handler-service.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { CredenciaisDTO } from '../model/CredenciaisDTO';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,10 @@ export class LoginPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides
   public wavesPosition: number = 0
   public wavesDifference: number = 800
-  public userLogin: User = {}
+  public userLogin: CredenciaisDTO = {
+    email: '',
+    senha: ''
+  }
   public userRegister: User = {}
   public loading: any
 
@@ -33,6 +37,7 @@ export class LoginPage implements OnInit {
   
   }
   public async login(){
+    console.log(this.userLogin)
     await this.presentLoading();
     try {
       await this.authService.login(this.userLogin)
