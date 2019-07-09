@@ -1,18 +1,114 @@
-.logo {
-    width: 250px;
-    height: 220px;
-    margin: 5px auto 0;
-    border-radius: 10%;
-    background: url("../../assets/imgs/logo.png") no-repeat;
-    background-size: 90%;
+
+
+.container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 75%;
+  margin: 0 auto;
+  z-index: 2;
+
+  &.top {
+      top: 5%;
+  }
+  &.bottom {
+      bottom: 30%;
+
+      h1 {
+          color: #fff;
+      }
   }
 
-  .backlogo {
-    background-color: #000066;
-    color: white;
-    text-align: center;
-    margin-bottom: 5rem;
-    padding: 1rem;
-    font-family: 'PMDF Font';
 
+}
+
+img {
+  width: 100px;
+  align-self: center;
+  margin: auto;
+  display: block;
+  padding: 10px;
+}
+
+
+
+  
+ion-segment-button {
+
+  background: #191919;
+  
+
+  ion-label {
+      color: #fff;
   }
+
+}
+
+ion-segment-button:hover {
+
+  background: #fff;
+  
+
+  ion-label {
+      color: rgba(0, 0, 0, 0.9);
+  }
+
+}
+
+ion-slides {
+  height: 100%;
+
+  .slide-inner {
+      width: 75%;
+      color: rgba(0, 0, 0, 0.9);
+      background-color: #fff;
+      border-radius: 10px;
+
+      ion-item {
+          --background: rgba(0, 0, 0, 0.9);
+          --border-radius: 10px;
+
+          ion-input {
+              --color: #fff;
+          }
+      }
+      ion-button {
+          --background: rgba(0, 0, 0, 0.9);
+          --color: #fff;
+      }
+      
+  }
+}
+
+
+.ocean {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background: rgba(0, 0, 0, 0.9);
+
+  .waves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 25px;
+     // background-image: url('../../assets/img/logo.png');
+      background-size: contain;
+      transition: all 0.5s;
+  }
+  
+}
+
+.preocean {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 45%;
+  height: 100%;
+  background: black;
+  z-index: 0;
+  
+}

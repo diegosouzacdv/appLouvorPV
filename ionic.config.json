@@ -1,5 +1,7 @@
 {
   "name": "app-louvor-pv",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

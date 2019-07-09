@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, MenuController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController, MenuController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
+import { User } from './../interfaces/user';
+import { AuthService } from './../services/auth.service';
+import { ErrorHandlerServiceService } from '../interceptors/error-handler-service.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-login',
@@ -8,36 +12,78 @@ import { NavController, MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  creds = {
-    username: "",
-    password: ""
-  }
+  @ViewChild(IonSlides) slides: IonSlides
+  public wavesPosition: number = 0
+  public wavesDifference: number = 800
+  public userLogin: User = {}
+  public userRegister: User = {}
+  public loading: any
 
-  constructor(
+  constructor(public keyboard: Keyboard,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    private authService: AuthService,
+    private errorHandler: ErrorHandlerServiceService,
     public navCtrl: NavController,
-    //public auth: AuthService,
     public menu: MenuController
-  ) { }
+    ) { 
+    }
 
   ngOnInit() {
+  
+  }
+  public async login(){
+    await this.presentLoading();
+    try {
+      await this.authService.login(this.userLogin)
+      this.navCtrl.navigateRoot('/tabs/tab1')
+    } catch (error) {
+      console.log(error)
+      this.errorHandler.handle(error.code)
+    } finally {
+      this.loading.dismiss()
+    }
   }
 
-  ionViewWillEnter() {
-    this.menu.enable(false);
-
+  public async register(){
+    await this.presentLoading()
+    try {
+      await this.authService.register(this.userRegister)   
+    } catch (error) {
+      if(error.code){
+        this.errorHandler.handle(error.code)
+      }else{
+        this.errorHandler.handle(error.status)
+      }
+    } finally {
+      this.loading.dismiss();
+    }
   }
 
-  ionViewDidLeave() {
-    this.menu.enable(true);
+ public async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Por favor, aguarde...'
+    });
+    return this.loading.present();
   }
 
-  login() {
-   /* this.auth.logout();
-    this.auth.authenticate(this.creds)
-      .subscribe(response => {
-        this.auth.successfullLogin(response['access_token']);
-        this.navCtrl.navigateRoot('/tabs');
-      })*/
+  public async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000
+    });
+    toast.present();
   }
 
-}
+  public ionViewWillEnter(){
+   this.menu.swipeEnable(false);
+  }
+
+  public ionViewDidLeave(){
+    this.menu.swipeEnable(true);
+  }
+   
+  }
+
+
+
