@@ -1,14 +1,14 @@
 import { Funcao } from './funcao';
 import { Igreja } from './igreja';
 export interface UsuarioDto {
-    id: string;
-    pessoa: {
+    id?: string;
+    pessoa?: {
         nome: string;
         telefone: string;
     }
-    email: string;
+    email?: string;
     imageUrl?: string;
-    ativo: string;
-    funcao: Funcao[];
-    igreja: Igreja;
+    ativo?: string;
+    funcao?: Funcao[];
+    igreja?: Igreja;
 }

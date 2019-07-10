@@ -14,29 +14,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
   <ion-card>
-    <ion-item >
+    <ion-item>
       <ion-avatar class="user-profile user-avatar" slot="start">
         <img class="circle1" [src]="usuario?.imageUrl || 'assets/imgs/avatar.jpg'" />
       </ion-avatar>
+      <h1>{{usuario.pessoa.nome}}</h1>
     </ion-item>
     <h6><strong>Dados Pessoais:</strong></h6>
     <ion-grid>
       <ion-row>
         <ion-col>
           <label>Nome:</label>
-          <div class="dado"></div>
+          <div class="dado">{{usuario.pessoa.nome}}</div>
         </ion-col>
         <ion-col>
           <label>Telefone:</label>
-          <div class="dado"></div>
+          <div class="dado">{{usuario.pessoa.telefone}}</div>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <label>E-mail:</label>
-          <div class="dado"></div>
+          <div class="dado">{{usuario.email}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <ion-button size="small" shape="round">
+            <ion-ripple-effect></ion-ripple-effect>Editar
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -44,25 +58,38 @@
   <ion-card>
     <h6><strong>Igreja:</strong></h6>
     <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-chip color="dark">
-                <ion-label>Default</ion-label>
-            </ion-chip>
-          </ion-col>
-        </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-chip color="dark">
+            <ion-label>{{usuario.igreja.nome}}</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
   <ion-card>
     <h6><strong>Funções:</strong></h6>
     <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-chip color="dark">
-                <ion-label>Default</ion-label>
-            </ion-chip>
-          </ion-col>
-        </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-chip color="dark" *ngFor="let funcao of usuario.funcao">
+            <ion-label>{{funcao.nome}}</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <ion-button size="small" shape="round">
+            <ion-ripple-effect></ion-ripple-effect>Editar
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
 </ion-content>

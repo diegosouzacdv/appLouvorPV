@@ -1,4 +1,3 @@
 export interface Igreja {
-    id: number;
-    nome: string;
+    nome?: string;
 }

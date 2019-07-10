@@ -11,7 +11,30 @@ import { API_CONFIG } from './../config/api.config';
 })
 export class Tab3Page implements OnInit {
 
-  public usuario: UsuarioDto;
+  public usuario: UsuarioDto = {
+    email:'diegoguitaibanez@gmail.com',
+    pessoa: {
+      nome: 'Diego de Souza',
+      telefone: '(61)98576-9860'
+    },
+    igreja: {
+      nome: 'Águas Claras'
+    },
+    funcao: [
+      {
+        id: 2,
+        nome:'Violonista'
+      },
+      {
+        id: 3,
+        nome:'Guitarrista'
+      },
+      {
+        id: 4,
+        nome:'Baixista'
+      },
+    ]
+  }
 
   constructor(
     public storage: StorageService,
