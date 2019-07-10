@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { AuthService } from './services/auth.service';
+import { UsuarioService } from './services/usuario.service';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -19,11 +20,13 @@ import { StorageService } from './services/storage.service';
   entryComponents: [],
   imports: [BrowserModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule],
 
+
 providers: [
     StatusBar,
     Keyboard,
     StorageService,
     AuthService,
+    UsuarioService,
     ErrorInterceptorProvider,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

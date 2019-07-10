@@ -4,7 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    {{email}}
+<ion-content padding>
+   <ion-avatar>
+     <img class="circle1" [src]="usuario?.imageUrl || 'assets/imgs/avatar.jpg'" />
+   </ion-avatar>
+   <h2 text-center>{{usuario?.pessoa.nome}}</h2>
 </ion-content>
 
