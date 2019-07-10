@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
-
 import { environment } from 'src/environments/environment';
-import { ErrorHandlerServiceService } from '../interceptors/error-handler-service.service';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { CredenciaisDTO } from './../model/CredenciaisDTO';
 import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from './../config/api.config';
+import { LocalUser } from './../model/local_user';
+import { StorageService } from './storage.service';
 
 
 
@@ -21,9 +21,9 @@ export class AuthService {
 
   constructor(
               private http: HttpClient,
-              private errorHandler: ErrorHandlerServiceService,
               private router: Router,
-              public menu: MenuController
+              public menu: MenuController,
+              public storage: StorageService
               ) {}
 
   public authenticate(login: CredenciaisDTO) {
@@ -36,13 +36,20 @@ export class AuthService {
      })
   }
 
-  public register(user: User) {
-  
+  public sucessfullLogin(authorizationValue: string) {
+    let tok = authorizationValue.substring(7);
+    let user: LocalUser = {
+      token: tok
+    };
+    this.storage.setLocalUser(user);
   }
 
   public logout() {
-   
+    this.storage.setLocalUser(null);
   }
+      public register(user: User) {
+      
+      }
 
    //Salvar Usuario
    public registerApi(usuario: User){

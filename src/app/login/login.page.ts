@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, MenuController, IonSlides, LoadingController, ToastController } from '@ionic/angular';
 import { User } from '../model/user';
 import { AuthService } from './../services/auth.service';
-import { ErrorHandlerServiceService } from '../interceptors/error-handler-service.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { CredenciaisDTO } from '../model/CredenciaisDTO';
 
@@ -27,7 +26,6 @@ export class LoginPage implements OnInit {
     private loadingController: LoadingController,
     private toastController: ToastController,
     private authService: AuthService,
-    private errorHandler: ErrorHandlerServiceService,
     public navCtrl: NavController,
     public menu: MenuController
     ) { 
@@ -41,7 +39,7 @@ export class LoginPage implements OnInit {
    try {
     await this.authService.authenticate(this.userLogin)
         .subscribe(response => {
-          console.log(response.headers.get('Authorization'))
+          this.authService.sucessfullLogin(response.headers.get('Authorization'))
           this.navCtrl.navigateRoot('/tabs/tab1')
           this.loading.dismiss();
         },
@@ -60,9 +58,7 @@ export class LoginPage implements OnInit {
       await this.authService.register(this.userRegister)   
     } catch (error) {
       if(error.code){
-        this.errorHandler.handle(error.code)
       }else{
-        this.errorHandler.handle(error.status)
       }
     } finally {
       this.loading.dismiss();

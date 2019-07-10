@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptorProvider } from './interceptors/error-interceptor';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { StorageService } from './services/storage.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 providers: [
     StatusBar,
     Keyboard,
-    
+    StorageService,
     AuthService,
     ErrorInterceptorProvider,
     SplashScreen,
