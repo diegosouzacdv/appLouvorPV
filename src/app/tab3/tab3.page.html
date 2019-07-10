@@ -1,13 +1,77 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Perfil</ion-title>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Perfil
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="cog"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+  <ion-card>
+    <ion-item >
+      <ion-avatar class="user-profile user-avatar" slot="start">
+        <img class="circle1" [src]="usuario?.imageUrl || 'assets/imgs/avatar.jpg'" />
+      </ion-avatar>
+    </ion-item>
+    <h6><strong>Dados Pessoais:</strong></h6>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <label>Nome:</label>
+          <div class="dado"></div>
+        </ion-col>
+        <ion-col>
+          <label>Telefone:</label>
+          <div class="dado"></div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <label>E-mail:</label>
+          <div class="dado"></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <h6><strong>Igreja:</strong></h6>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-chip color="dark">
+                <ion-label>Default</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <h6><strong>Funções:</strong></h6>
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-chip color="dark">
+                <ion-label>Default</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
+
+
+
+<!-- <ion-content padding>
    <ion-avatar>
      <img class="circle1" [src]="usuario?.imageUrl || 'assets/imgs/avatar.jpg'" />
    </ion-avatar>
    <h2 text-center>{{usuario?.pessoa.nome}}</h2>
-</ion-content>
-
+</ion-content> -->
