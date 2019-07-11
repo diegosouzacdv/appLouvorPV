@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from 'rxjs/operators';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from '../services/auth.service';
 @Injectable()
@@ -12,8 +12,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     public message: string
 
     constructor(private toastController: ToastController,
-                private storage: StorageService,
-                public authService: AuthService
+                public authService: AuthService,
+                public alertCtrl: AlertController
                 ){ }
  
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
@@ -35,6 +35,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                             break;
                             case 401: this.handle401();
                             break;
+                            default:
+                                this.handleDefaultError(errorObj);
                         }
  
                         return throwError(error);
@@ -43,24 +45,38 @@ export class ErrorInterceptor implements HttpInterceptor {
  
  
 handle403(){
-    this.message = 'Ops!!! Algo deu errado, por faça o login novamente!';
-    this.presentToast(this.message);
+    let alert = this.alertCtrl.create({
+        header: 'Ops, Algo de errado!',
+        message: 'Por Favor, faça o login novamente!',
+        backdropDismiss:false,
+        buttons: [
+            {text: 'Ok'}
+        ]
+    }).then(alert => alert.present())
     this.authService.logout()
     }
 
-handle401(){
-    this.message = 'Usuario ou senha errada!';
-    this.presentToast(this.message);
+ handle401(){
+    let alert = this.alertCtrl.create({
+        header: 'Falha de autenticação',
+        message: 'Usuario ou senha errada!',
+        backdropDismiss:false,
+        buttons: [
+            {text: 'Ok'}
+        ]
+    }).then(alert => alert.present())
     }
 
-
-    async presentToast(message: string) {
-        const toast = await this.toastController.create({
-          message,
-          duration: 5000
-        });
-        toast.present();
-      }
+  handleDefaultError(errorObj){
+    let alert = this.alertCtrl.create({
+        header: 'Error ' + errorObj.status + ': ' + errorObj.error,
+        message: errorObj.message,
+        backdropDismiss:false,
+        buttons: [
+            {text: 'Ok'}
+        ]
+    }).then(alert => alert.present())
+    }
  
 }
  
