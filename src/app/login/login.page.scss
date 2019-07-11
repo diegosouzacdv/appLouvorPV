@@ -1,5 +1,3 @@
-
-
 .container {
   position: absolute;
   left: 0;
@@ -56,6 +54,11 @@ ion-segment-button:hover {
 }
 
 ion-slides {
+
+  ion-slide {
+    --bullet-background-active: #fff;
+    --bullet-background: #fff;
+  }
   height: 100%;
 
   .slide-inner {

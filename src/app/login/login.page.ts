@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { AuthService } from './../services/auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { CredenciaisDTO } from '../model/CredenciaisDTO';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,13 @@ import { CredenciaisDTO } from '../model/CredenciaisDTO';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  formGroup: FormGroup;
+
+  slideOpts = {
+    initialSlide: 0,
+    speed: 500
+  };
 
   @ViewChild(IonSlides) slides: IonSlides
   public wavesPosition: number = 0
@@ -27,29 +35,20 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private authService: AuthService,
     public navCtrl: NavController,
-    public menu: MenuController
+    public menu: MenuController,
+    public formBuilder: FormBuilder
     ) { 
+      this.formGroup = this.formBuilder.group({
+        nome: ['teste', [Validators.required]],
+        email: ['teste@gmail.com', [Validators.required]],
+        telefone: ['61985769860', [Validators.required]],
+        senha: ['teste', [Validators.required], Validators.minLength[6]]
+      })
     }
 
   ngOnInit() {
   
   }
-
-  async ionViewDidEnter() {
-    await this.presentLoading();
-    try {
-      await this.authService.refreshToken()
-      .subscribe(response => {
-        this.authService.sucessfullLogin(response.headers.get('Authorization'));
-        this.navCtrl.navigateRoot('/tabs/tab1')
-      },
-      error => {
-      })
-    } finally {
-      this.loading.dismiss();
-    }
-  }
-
 
   public async login(){
    await this.presentLoading();
@@ -104,6 +103,9 @@ export class LoginPage implements OnInit {
   public ionViewDidLeave(){
     this.menu.swipeEnable(true);
   }
+
+
+  
    
   }
 

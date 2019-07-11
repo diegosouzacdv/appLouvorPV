@@ -1,18 +1,18 @@
 <ion-content>
   <div class="container top" [hidden]="keyboard.isVisible">
-      <!-- <img src="/assets/img/logo.png"> -->
-      <div class="titulo">
-        <!-- <h1>Palavra viva</h1> -->
-        <img src="assets/imgs/logo.png">
-      </div>
+    <!-- <img src="/assets/img/logo.png"> -->
+    <div class="titulo">
+      <!-- <h1>Palavra viva</h1> -->
+      <img src="assets/imgs/logo.png">
+    </div>
     <br>
   </div>
 
-  <ion-slides>
+  <ion-slides pager="true" scrollbar="true" [options]="slideOpts" color="light">
     <ion-slide [hidden]="keyboard.isVisible">
       <div class="slide-inner ion-padding">
         <div class="titulo3"><span>Login</span></div>
-  
+
         <ion-item class="ion-margin-top" lines="none">
           <ion-input type="email" placeholder="E-mail" [(ngModel)]="userLogin.email"></ion-input>
         </ion-item>
@@ -26,42 +26,42 @@
         </ion-button>
       </div>
     </ion-slide>
-
     <ion-slide>
-      <div class="slide-inner ion-padding">
+        <div class="slide-inner ion-padding">
           <div class="titulo3"><span>Cadastro</span></div>
-
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="text" placeholder="Nome" [(ngModel)]="userRegister.name"></ion-input>
-        </ion-item>
-
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="email" placeholder="E-mail" [(ngModel)]="userRegister.email"></ion-input>
-        </ion-item>
-
-        <ion-item class="ion-margin-top" lines="none">
-            <ion-input type="password" placeholder="Senha" [(ngModel)]="userRegister.password"></ion-input>
+          <form [formGroup]="formGroup">
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
+          </ion-item>
+          
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input formControlName="telefone" type="text" placeholder="Telefone"></ion-input>
           </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="text" placeholder="Telefone" [(ngModel)]="userRegister.phone"></ion-input>
-        </ion-item>
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input formControlName="email" type="email" placeholder="E-mail" ></ion-input>
+          </ion-item>
+  
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input formControlName="senha" type="password" placeholder="Senha" ></ion-input>
+          </ion-item>
 
-        <ion-button class="ion-margin-top" (click)="register()" expand="block">
-          Cadastrar
-        </ion-button>
-      </div>
-    </ion-slide>
+          <ion-button class="ion-margin-top" (click)="register()" expand="block">
+            Cadastrar
+          </ion-button>
+        </form>
+        </div>
+      </ion-slide>
   </ion-slides>
 
   <div class="preocean"> </div>
 
   <div class="ocean" [hidden]="keyboard.isVisible">
     <div class="waves">
-      
+
     </div>
 
-    <div class="container bottom ion-text-center titulo" >
+    <div class="container bottom ion-text-center titulo">
       <h1>Louvor PV</h1>
     </div>
   </div>

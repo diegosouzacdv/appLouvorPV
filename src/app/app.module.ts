@@ -8,6 +8,8 @@ import { UsuarioService } from './services/usuario.service';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +21,7 @@ import { AuthInterceptorProvider } from './interceptors/auth-interceptor';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule],
 
 
 providers: [
