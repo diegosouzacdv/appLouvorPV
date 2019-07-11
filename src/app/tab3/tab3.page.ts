@@ -4,6 +4,7 @@ import { UsuarioDto } from './../model/usuario.dto';
 import { UsuarioService } from './../services/usuario.service';
 import { API_CONFIG } from './../config/api.config';
 import { NavController } from '@ionic/angular';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-tab3',
@@ -16,6 +17,7 @@ export class Tab3Page implements OnInit {
   constructor(
     public storage: StorageService,
     public usuarioService: UsuarioService,
+    public authService: AuthService,
     public navCtrl: NavController
     ) { }
     
@@ -42,6 +44,9 @@ export class Tab3Page implements OnInit {
         },
         error => {});
     }
+    else {
+      this.authService.logout()
+    }
   }
 
   public getImageIfExists() {
@@ -50,10 +55,5 @@ export class Tab3Page implements OnInit {
         this.usuario.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.usuario.id}.jpg`;
       },
       error => {});
-  }
-
-  public editarDadosPessoais() {
-    this.navCtrl.navigateForward('/pessoal')
-  }
-
+    }
 }

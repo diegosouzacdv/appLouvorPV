@@ -44,7 +44,6 @@ export class LoginPage implements OnInit {
           this.loading.dismiss();
         },
         error => {
-          this.navCtrl.navigateRoot('/tabs/tab1')
         })
       }finally {
 

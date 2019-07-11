@@ -21,4 +21,5 @@ import { StorageService } from './storage.service';
         let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`
         return this.http.get(url, {responseType: 'blob'});
     }
+
 }

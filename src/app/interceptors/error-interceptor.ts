@@ -4,12 +4,17 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS
 import { Observable, throwError } from "rxjs";
 import { catchError } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from '../services/auth.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
     public message: string
 
-    constructor(private toastController: ToastController){ }
+    constructor(private toastController: ToastController,
+                private storage: StorageService,
+                public authService: AuthService
+                ){ }
  
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         
@@ -38,7 +43,9 @@ export class ErrorInterceptor implements HttpInterceptor {
  
  
 handle403(){
-        
+    this.message = 'Ops!!! Algo deu errado, por faça o login novamente!';
+    this.presentToast(this.message);
+    this.authService.logout()
     }
 
 handle401(){

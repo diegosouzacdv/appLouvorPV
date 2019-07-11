@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UsuarioDto } from 'src/app/model/usuario.dto';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dados-pessoais',
@@ -21,7 +23,9 @@ export class DadosPessoaisPage implements OnInit {
 
   constructor(
     public storage: StorageService,
-    public usuarioService: UsuarioService
+    public usuarioService: UsuarioService,
+    public navCtrl: NavController,
+    public authService: AuthService,
     ) { 
     
   }
@@ -34,6 +38,9 @@ export class DadosPessoaisPage implements OnInit {
           this.usuario = response;
         },
         error => {});
+    }
+    else {
+      this.authService.logout()
     }
   }
 

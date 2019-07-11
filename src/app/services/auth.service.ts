@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { CredenciaisDTO } from './../model/CredenciaisDTO';
 import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from './../config/api.config';
@@ -21,7 +21,8 @@ export class AuthService {
   constructor(
               private http: HttpClient,
               public menu: MenuController,
-              public storage: StorageService
+              public storage: StorageService,
+              public navCtrl: NavController
               ) {}
 
   public authenticate(login: CredenciaisDTO) {
@@ -45,6 +46,7 @@ export class AuthService {
 
   public logout() {
     this.storage.setLocalUser(null);
+    this.navCtrl.navigateRoot('/login');
   }
       public register(user: User) {
       
