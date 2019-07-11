@@ -34,6 +34,23 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   
   }
+
+  async ionViewDidEnter() {
+    await this.presentLoading();
+    try {
+      await this.authService.refreshToken()
+      .subscribe(response => {
+        this.authService.sucessfullLogin(response.headers.get('Authorization'));
+        this.navCtrl.navigateRoot('/tabs/tab1')
+      },
+      error => {
+      })
+    } finally {
+      this.loading.dismiss();
+    }
+  }
+
+
   public async login(){
    await this.presentLoading();
    try {
@@ -74,7 +91,7 @@ export class LoginPage implements OnInit {
 
   public async presentToast(message: string) {
     const toast = await this.toastController.create({
-      message,
+      message: 'Aguarde!',
       duration: 2000
     });
     toast.present();
