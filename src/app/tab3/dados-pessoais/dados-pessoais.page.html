@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Dados Pessoais</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding color="primary">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item color="primary">
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario.pessoa.nome"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item color="primary">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" [(ngModel)]="usuario.email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+          <ion-item color="primary">
+            <ion-label position="floating">Telefone</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario.pessoa.telefone"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-col>
+          <ion-button color="light" expand="block" shape="round" (click)="editarUsuario()">
+            <ion-ripple-effect ></ion-ripple-effect>Editar
+          </ion-button>
+      </ion-col>
+  </ion-grid>
+</ion-content>

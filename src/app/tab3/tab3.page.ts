@@ -3,6 +3,7 @@ import { StorageService } from '../services/storage.service';
 import { UsuarioDto } from './../model/usuario.dto';
 import { UsuarioService } from './../services/usuario.service';
 import { API_CONFIG } from './../config/api.config';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -11,35 +12,14 @@ import { API_CONFIG } from './../config/api.config';
 })
 export class Tab3Page implements OnInit {
 
-  public usuario: UsuarioDto = {
-    email:'diegoguitaibanez@gmail.com',
-    pessoa: {
-      nome: 'Diego de Souza',
-      telefone: '(61)98576-9860'
-    },
-    igreja: {
-      nome: 'Águas Claras'
-    },
-    funcao: [
-      {
-        id: 2,
-        nome:'Violonista'
-      },
-      {
-        id: 3,
-        nome:'Guitarrista'
-      },
-      {
-        id: 4,
-        nome:'Baixista'
-      },
-    ]
-  }
-
+  
   constructor(
     public storage: StorageService,
-    public usuarioService: UsuarioService
-  ) { }
+    public usuarioService: UsuarioService,
+    public navCtrl: NavController
+    ) { }
+    
+    public usuario: UsuarioDto
 
   ngOnInit() {
     let localUser = this.storage.getLocalUser();
@@ -48,7 +28,7 @@ export class Tab3Page implements OnInit {
         .subscribe(response => {
           this.usuario = response;
           this.getImageIfExists();
-          console.log(this.usuario)
+          console.log(this.storage.getLocalUser())
         },
         error => {});
     }
@@ -60,6 +40,10 @@ export class Tab3Page implements OnInit {
         this.usuario.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.usuario.id}.jpg`;
       },
       error => {});
+  }
+
+  public editarDadosPessoais() {
+    this.navCtrl.navigateForward('/pessoal')
   }
 
 }
