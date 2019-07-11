@@ -14,11 +14,7 @@ import { StorageService } from './storage.service';
         public storage: StorageService){}
 
     public findByEmail(email: string): Observable<UsuarioDto> {
-
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({'Authorization': 'Bearer ' + token});
-
-        return this.http.get<UsuarioDto>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`, {'headers': authHeader});
+        return this.http.get<UsuarioDto>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
     }
 
     public getImageFromBucket(id: string): Observable<any> {

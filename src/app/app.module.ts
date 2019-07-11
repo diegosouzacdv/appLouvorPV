@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorInterceptorProvider } from './interceptors/error-interceptor';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
+import { AuthInterceptorProvider } from './interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ providers: [
     StorageService,
     AuthService,
     UsuarioService,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

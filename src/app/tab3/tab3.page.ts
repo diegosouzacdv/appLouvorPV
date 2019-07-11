@@ -19,7 +19,18 @@ export class Tab3Page implements OnInit {
     public navCtrl: NavController
     ) { }
     
-    public usuario: UsuarioDto
+    public usuario: UsuarioDto = {
+      pessoa: {
+        nome: '',
+        telefone: ''
+    },
+    email: '',
+    imageUrl: '',
+    funcao: [],
+    igreja: {
+      nome: ''
+    }
+    }
 
   ngOnInit() {
     let localUser = this.storage.getLocalUser();
@@ -28,7 +39,6 @@ export class Tab3Page implements OnInit {
         .subscribe(response => {
           this.usuario = response;
           this.getImageIfExists();
-          console.log(this.storage.getLocalUser())
         },
         error => {});
     }
