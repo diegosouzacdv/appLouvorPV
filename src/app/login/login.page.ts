@@ -65,7 +65,8 @@ export class LoginPage implements OnInit {
 
         this.loading.dismiss();
       }
-   
+   //this.formgrup.controls.estadoId.setValue(this.estados[0].id) -> atribuir o primeiro estado selecionado
+   //this.formGroup.value.estadoId -> pega o Id do estado selecionao
   }
 
   public async register(){
