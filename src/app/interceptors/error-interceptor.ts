@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { ToastController, AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { AuthService } from '../services/auth.service';
+import { FieldMessage } from './../model/field.message';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
@@ -35,6 +36,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                             break;
                             case 401: this.handle401();
                             break;
+                            case 422: this.handle422(errorObj);
+                            break;
                             default:
                                 this.handleDefaultError(errorObj);
                         }
@@ -58,7 +61,7 @@ handle403(){
 
  handle401(){
     let alert = this.alertCtrl.create({
-        header: 'Falha de autenticação',
+        header: 'Erro de Validação',
         message: 'Usuario ou senha errada!',
         backdropDismiss:false,
         buttons: [
@@ -66,6 +69,17 @@ handle403(){
         ]
     }).then(alert => alert.present())
     }
+
+    handle422(errorObj){
+        let alert = this.alertCtrl.create({
+            header: 'Falha de autenticação',
+            message: this.listErrors(errorObj.error),
+            backdropDismiss:false,
+            buttons: [
+                {text: 'Ok'}
+            ]
+        }).then(alert => alert.present())
+        }
 
   handleDefaultError(errorObj){
     let alert = this.alertCtrl.create({
@@ -76,6 +90,14 @@ handle403(){
             {text: 'Ok'}
         ]
     }).then(alert => alert.present())
+    }
+
+   private listErrors(messages : FieldMessage[]):string {
+        let s: string ='';
+        for(var i=0; i < messages.length; i++) {
+            s = s + '<p><strong>' + messages[i].fieldName + '</strong>: ' + messages[i].message + '</p>';
+        }
+        return s;
     }
  
 }

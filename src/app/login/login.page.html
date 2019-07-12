@@ -53,7 +53,7 @@
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>Valor inválido</p>
 
-          <ion-button class="ion-margin-top" (click)="register()" expand="block" [disabled]="formGroup.invalid">
+          <ion-button class="ion-margin-top" (click)="novoUsuario()" expand="block" [disabled]="formGroup.invalid">
             Cadastrar
           </ion-button>
         </form>

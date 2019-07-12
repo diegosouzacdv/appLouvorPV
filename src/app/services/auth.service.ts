@@ -58,12 +58,4 @@ export class AuthService {
     this.storage.setLocalUser(null);
     this.navCtrl.navigateRoot('/login');
   }
-      public register(user: User) {
-      
-      }
-
-   //Salvar Usuario
-   public registerApi(usuario: User){
-  
-}
 }
