@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { UsuarioNewDto } from '../model/usuarioNew.dto';
-import { UsuarioDto } from '../model/usuario.dto';
+import { UsuarioDadosPessoaisDto } from '../model/usuarioDadosPessoais.dto';
+import { User } from './../model/user';
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +15,8 @@ import { UsuarioDto } from '../model/usuario.dto';
         public http: HttpClient,
         public storage: StorageService){}
 
-    public findByEmail(email: string): Observable<UsuarioDto> {
-        return this.http.get<UsuarioDto>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
+    public findByEmail(email: string): Observable<User> {
+        return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
     }
 
     public getImageFromBucket(id: string): Observable<any> {
@@ -25,6 +26,17 @@ import { UsuarioDto } from '../model/usuario.dto';
 
     public novoUsuario(obj: UsuarioNewDto) {
         return this.http.post(`${API_CONFIG.baseUrl}/usuarios`, obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    public atualizarDadosPessoaisUsuario(obj: User) {
+        delete(obj.perfis)
+    console.log(obj)
+        return this.http.put(`${API_CONFIG.baseUrl}/usuarios/pessoais/${obj.id}`, obj,
             {
                 observe: 'response',
                 responseType: 'text'

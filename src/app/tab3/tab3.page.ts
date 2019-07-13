@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { UsuarioDto } from './../model/usuario.dto';
 import { UsuarioService } from './../services/usuario.service';
 import { API_CONFIG } from './../config/api.config';
 import { NavController } from '@ionic/angular';
 import { AuthService } from './../services/auth.service';
+import { User } from './../model/user';
 
 @Component({
   selector: 'app-tab3',
@@ -13,7 +13,7 @@ import { AuthService } from './../services/auth.service';
 })
 export class Tab3Page implements OnInit {
 
-  
+
   constructor(
     public storage: StorageService,
     public usuarioService: UsuarioService,
@@ -21,15 +21,23 @@ export class Tab3Page implements OnInit {
     public navCtrl: NavController
     ) { }
     
-    public usuario: UsuarioDto = {
+    public usuario: User = {
+      id:'',
+      email: '',
+      ativo: true,
       pessoa: {
         nome: '',
-        telefone: ''
+        telefone: '',
     },
-    email: '',
     imageUrl: '',
-    funcao: [],
+    funcao: [
+      {
+        id: 0,
+        nome:''
+      }
+    ],
     igreja: {
+      id: 0,
       nome: ''
     }
     }

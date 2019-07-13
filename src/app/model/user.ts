@@ -1,12 +1,13 @@
 export interface User {
-    id?:number
-    name?: string
+    id?:string,
     email?: string,
-    phone?: string,
-    password?: string,
     ativo?: boolean,
+    imageUrl?: string,
     funcao?: [
-        
+        {
+            id?:number,
+            nome: string
+        }
     ],
     igreja?: {
         id?:number,
@@ -16,5 +17,9 @@ export interface User {
         nome?: string,
         telefone?: string
       }
+      ,
+    perfis?: String [
+        
+    ]
 }
 

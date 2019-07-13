@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="container top" [hidden]="keyboard.isVisible">
+  <div class="container top" >
     <!-- <img src="/assets/img/logo.png"> -->
     <div class="titulo">
       <!-- <h1>Palavra viva</h1> -->
@@ -9,7 +9,7 @@
   </div>
 
   <ion-slides pager="true" scrollbar="true" [options]="slideOpts" color="light">
-    <ion-slide [hidden]="keyboard.isVisible">
+    <ion-slide >
       <div class="slide-inner ion-padding">
         <div class="titulo3"><span>Login</span></div>
         <form [formGroup]="formGroup">
@@ -63,7 +63,7 @@
 
   <div class="preocean"> </div>
 
-  <div class="ocean" [hidden]="keyboard.isVisible">
+  <div class="ocean">
     <div class="waves">
 
     </div>
