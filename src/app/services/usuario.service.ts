@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { UsuarioNewDto } from '../model/usuarioNew.dto';
 import { UsuarioDadosPessoaisDto } from '../model/usuarioDadosPessoais.dto';
 import { User } from './../model/user';
+import { Funcao } from './../model/funcao';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,10 @@ import { User } from './../model/user';
 
     public findByEmail(email: string): Observable<User> {
         return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
+    }
+
+    public todasFuncoes(): Observable<Funcao> {
+        return this.http.get<Funcao>(`${API_CONFIG.baseUrl}/funcoes`);
     }
 
     public getImageFromBucket(id: string): Observable<any> {

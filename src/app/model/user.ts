@@ -1,14 +1,10 @@
+import { Funcao } from './funcao';
 export interface User {
     id?:string,
     email?: string,
     ativo?: boolean,
     imageUrl?: string,
-    funcao?: [
-        {
-            id?:number,
-            nome: string
-        }
-    ],
+    funcao?: Funcao[],
     igreja?: {
         id?:number,
         nome?:string

@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>funcoes</ion-title>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Funções</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding color="primary">
+  <ion-card color="primary">
+    <h6><strong color="light">Funções:</strong></h6>
+    <ion-grid>
+      <ion-row >
+        <ion-col>
+         
+          <ion-chip color="light" *ngFor="let funcao of novasFuncoes">  
+             <ion-label>{{funcao.nome}}</ion-label> 
+            </ion-chip>
+         
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <br>
+  <ion-card color="primary">
 
+    <ion-label>Nova Função</ion-label>
+      <ion-item *ngFor="let funcao of todasFuncoes" color="primary">
+          <ion-label> {{funcao.nome}}</ion-label>
+          <ion-toggle (ionChange)="recebeItem($event, funcao)" checked="false" color="danger"></ion-toggle>
+        </ion-item>
+  
+      
+  </ion-card>
+
+  <ion-col>
+      <ion-button color="light" expand="block" shape="round" (click)="editarUsuario()">
+        <ion-ripple-effect ></ion-ripple-effect>Salvar
+      </ion-button>
+  </ion-col>
 </ion-content>
