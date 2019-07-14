@@ -48,6 +48,7 @@ export class DadosPessoaisPage implements OnInit {
         await this.usuarioService.atualizarDadosPessoaisUsuario(this.usuario)
         .subscribe(response => {
           this.showInsertOk();
+          this.navCtrl.navigateRoot('/tabs/tab3')
         },
         error => {});
       } finally {

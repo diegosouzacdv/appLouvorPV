@@ -37,9 +37,7 @@ export class FuncoesPage implements OnInit {
     if(localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
-
           this.usuario = response
-          console.log(this.usuario)
         },
         error => {});
     }
@@ -56,14 +54,11 @@ export class FuncoesPage implements OnInit {
   }
 
   public recebeItem(event: { detail: { checked: any; }; }, funcao: any){
-    
     if(event.detail.checked){
       this.novasFuncoes.push(funcao)   
     } else {
       this.novasFuncoes.pop()
     }
-
-   
 }
 
   public async editarUsuario(funcoes: any){
@@ -74,6 +69,7 @@ export class FuncoesPage implements OnInit {
       await this.usuarioService.atualizarDadosPessoaisUsuario(this.usuario)
       .subscribe(response => {
         this.showInsertOk();
+        this.navCtrl.navigateRoot('/tabs/tab3')
       },
       error => {});
     } finally {
