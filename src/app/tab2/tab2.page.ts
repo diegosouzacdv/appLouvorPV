@@ -37,13 +37,7 @@ export class Tab2Page implements OnInit {
       }
   }
 
-  public async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Por favor, aguarde...'
-    });
-    return this.loading.present();
-  }
-
+  
   public mostrarMusica(id: number) {
     console.log("chamando pagina individual de música")
     this.musicaService.musicasPorId(id)
@@ -52,6 +46,13 @@ export class Tab2Page implements OnInit {
     },
     error => {
     })
+  }
+
+  public async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Por favor, aguarde...'
+    });
+    return this.loading.present();
   }
 
 }

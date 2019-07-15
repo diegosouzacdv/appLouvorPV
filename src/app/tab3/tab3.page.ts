@@ -43,6 +43,10 @@ export class Tab3Page implements OnInit {
     }
 
   ngOnInit() {
+    this.getuser();
+  }
+
+  public getuser() {
     let localUser = this.storage.getLocalUser();
     if(localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
