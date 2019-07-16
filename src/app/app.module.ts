@@ -17,6 +17,7 @@ import { ErrorInterceptorProvider } from './interceptors/error-interceptor';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
 import { AuthInterceptorProvider } from './interceptors/auth-interceptor';
+import { RepertorioService } from './services/repertorio.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ providers: [
     StorageService,
     AuthService,
     UsuarioService,
+    RepertorioService,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
     SplashScreen,

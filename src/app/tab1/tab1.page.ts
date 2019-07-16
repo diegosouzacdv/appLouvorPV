@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { UsuarioService } from '../services/usuario.service';
 import { User } from '../model/user';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { RepertorioService } from '../services/repertorio.service';
 import { Repertorio } from '../model/Repertorio';
 
@@ -34,15 +34,58 @@ export class Tab1Page implements OnInit {
     nome: ''
   }
   }
-
+  public repertorios: Repertorio = {
+    id: 0,
+    data: '',
+    criador: '',
+    totalMusicas: 0,
+    equipeDoDia: {
+      baterista: '',
+      guitarrista: '',
+      tecladista: '',
+      violonista: '',
+      ministro: ['']
+  },
+    musicasRepertorio: [
+      {
+      id: 0,
+      nome: 'teste',
+      dataInserida: '',
+      notaOriginal: '',
+      notaTocada: '',
+      grupo: {
+        id: 0,
+        nome: '',
+      },
+      categorias: {
+        id: 0,
+        nome: '',
+      },
+      estudo: {
+        bpm: 0,
+      cifra: '',
+      guiaInstrumental: '',
+      guiaVocal: '',
+      letra: ''
+      },
+      tutorial: {
+        baixo: [''],
+        bateria: [''],
+        guitarra: [''],
+        teclado: [''],
+        violao: ['']
+      }
+      }
+    ]
+  }
   public loading: any
-  public repertorio: Repertorio
+
   constructor(
     private authService: AuthService,
     public storage: StorageService,
     public usuarioService: UsuarioService,
     private loadingController: LoadingController,
-    public repertorioService: RepertorioService,
+    public repertorioService: RepertorioService
     ) { }
 
   ngOnInit() {
@@ -69,8 +112,8 @@ export class Tab1Page implements OnInit {
     try {
       await this.repertorioService.todosRepertorio()
         .subscribe((response: Repertorio) => {
-          this.repertorio = response;
-          console.log(this.repertorio);
+          this.repertorios = response;
+          console.log(this.repertorios);
         },
         error => {
         })

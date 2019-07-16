@@ -7,7 +7,9 @@ const routes: Routes = [
  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'novo-usuario', loadChildren: './novo-usuario/novo-usuario.module#NovoUsuarioPageModule' },
-  { path: 'pessoal', loadChildren: './tab3/dados-pessoais/dados-pessoais.module#DadosPessoaisPageModule' },  { path: 'funcoes', loadChildren: './tab3/funcoes/funcoes.module#FuncoesPageModule' }
+  { path: 'pessoal', loadChildren: './tab3/dados-pessoais/dados-pessoais.module#DadosPessoaisPageModule' },
+  { path: 'funcoes', loadChildren: './tab3/funcoes/funcoes.module#FuncoesPageModule' },
+  { path: 'repertorio/:id', loadChildren: './tab1/repertorio/repertorio.module#RepertorioPageModule' }
 
 
 

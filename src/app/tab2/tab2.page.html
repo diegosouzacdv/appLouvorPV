@@ -11,7 +11,7 @@
     <ion-searchbar placeholder="Pesquisa" showCancelButton="focus" color="dark" cancelButtonText="Cancelar" ></ion-searchbar>
 </ion-toolbar>
   <ion-list >
-    <ion-item *ngFor="let musica of musicas" (click)="mostrarMusica(musica.id)">
+    <ion-item *ngFor="let musica of musicas">
       <ion-label >{{musica.nome}}</ion-label>
       <ion-note slot="start">{{musica.id}}</ion-note>
       <ion-note slot="end">{{musica.grupo}}</ion-note>
