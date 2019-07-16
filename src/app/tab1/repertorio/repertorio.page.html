@@ -16,9 +16,59 @@
           <div class="dado">{{repertorio.id}}</div>
         </ion-col>
         <ion-col>
-            <label>Código:</label>
-            <div class="dado">{{repertorio.id}}</div>
-          </ion-col>
+          <label>Responsável:</label>
+          <div class="dado">{{repertorio.criador}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list lines="none">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <label><strong>Musicas:</strong></label>
+                  <ion-item *ngFor="let musica of repertorio.musicasRepertorio; index as i;" [routerLink]="['/musica', musica.musica.id]" routerDirection="forward">
+                    {{musica.musica.nome}} - {{musica.musica.grupo.nome}}
+                    <ion-note slot="end">{{musica.musica.notaTocada}}</ion-note>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <br>
+              <ion-row>
+                <ion-col>
+                  <label><strong>Equipe do dia:</strong></label>
+                  <ion-item>
+                    <ion-note slot="start">Ministros: </ion-note>
+                    <div *ngFor="let ministro of repertorio.equipeDoDia.ministro; index as i;">
+                      <p> {{ministro}} - &nbsp;</p>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <ion-note slot="start">Violonista: </ion-note>
+                    <p>{{repertorio.equipeDoDia.violonista}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <ion-note slot="start">Tecladista: </ion-note>
+                    <p>{{repertorio.equipeDoDia.tecladista}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <ion-note slot="start">Guitarrista: </ion-note>
+                    <p>{{repertorio.equipeDoDia.guitarrista}}</p>
+                  </ion-item>
+                  <ion-item>
+                    <ion-note slot="start">Baterista: </ion-note>
+                    <p>{{repertorio.equipeDoDia.baterista}}</p>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <p><strong>Total de Músicas: {{repertorio.totalMusicas}}</strong></p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-list>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

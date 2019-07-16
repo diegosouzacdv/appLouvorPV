@@ -9,7 +9,9 @@ const routes: Routes = [
   { path: 'novo-usuario', loadChildren: './novo-usuario/novo-usuario.module#NovoUsuarioPageModule' },
   { path: 'pessoal', loadChildren: './tab3/dados-pessoais/dados-pessoais.module#DadosPessoaisPageModule' },
   { path: 'funcoes', loadChildren: './tab3/funcoes/funcoes.module#FuncoesPageModule' },
-  { path: 'repertorio/:id', loadChildren: './tab1/repertorio/repertorio.module#RepertorioPageModule' }
+  { path: 'repertorio/:id', loadChildren: './tab1/repertorio/repertorio.module#RepertorioPageModule' },
+  { path: 'musica/:id', loadChildren: './tab2/musica/musica.module#MusicaPageModule' }
+
 
 
 

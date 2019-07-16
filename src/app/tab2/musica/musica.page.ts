@@ -1,32 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { Repertorio } from 'src/app/model/Repertorio';
-import { RepertorioService } from 'src/app/services/repertorio.service';
+import { MusicaService } from 'src/app/services/musica.service';
+import { Musica } from 'src/app/model/MusicaRepertorio';
 
 @Component({
-  selector: 'app-repertorio',
-  templateUrl: './repertorio.page.html',
-  styleUrls: ['./repertorio.page.scss'],
+  selector: 'app-musica',
+  templateUrl: './musica.page.html',
+  styleUrls: ['./musica.page.scss'],
 })
-export class RepertorioPage implements OnInit {
-  
+export class MusicaPage implements OnInit {
+
   public id: string;
-  public loading: any
-  public repertorio: Repertorio = {
-    id: 0,
-    data: '',
-    criador: '',
-    totalMusicas: 0,
-    equipeDoDia: {
-      baterista: '',
-      guitarrista: '',
-      tecladista: '',
-      violonista: '',
-      ministro: ['']
-  },
-    musicasRepertorio: [ {
-      musica: {
+  public loading: any;
+  public musica: Musica = {
+    musica: {
       id: 0,
       nome: '',
       dataInserida: '',
@@ -55,14 +43,12 @@ export class RepertorioPage implements OnInit {
         violao: ['']
       }
       }
-    }
-    ]
   }
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private loadingController: LoadingController,
-    public repertorioService: RepertorioService
+    public musicaService: MusicaService
   ) { }
 
   ngOnInit() {
@@ -71,12 +57,13 @@ export class RepertorioPage implements OnInit {
   }
 
   public async repertorioId(id: number) {
+    console.log(id)
     await this.presentLoading();
     try {
-      await this.repertorioService.repertorioId(id)
-        .subscribe((response: Repertorio) => {
-          this.repertorio = response;
-          console.log(this.repertorio);
+      await this.musicaService.musicasId(id)
+        .subscribe((response: Musica) => {
+          this.musica = response;
+          console.log(this.musica);
         },
         error => {
         })

@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { UsuarioService } from '../services/usuario.service';
 import { User } from '../model/user';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, NavController, MenuController } from '@ionic/angular';
 import { RepertorioService } from '../services/repertorio.service';
 import { Repertorio } from '../model/Repertorio';
 
@@ -85,7 +85,8 @@ export class Tab1Page implements OnInit {
     public storage: StorageService,
     public usuarioService: UsuarioService,
     private loadingController: LoadingController,
-    public repertorioService: RepertorioService
+    public repertorioService: RepertorioService,
+    public menu: MenuController
     ) { }
 
   ngOnInit() {
@@ -143,5 +144,7 @@ export class Tab1Page implements OnInit {
     }
   }
 
-
+  public ionViewWillEnter(){
+    this.menu.swipeEnable(false);
+   }
 }

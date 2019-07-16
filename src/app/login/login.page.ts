@@ -105,9 +105,9 @@ public showInsertOk() {
    this.menu.swipeEnable(false);
   }
 
-  public ionViewDidLeave(){
+  /*public ionViewDidLeave(){
     this.menu.swipeEnable(true);
-  }
+  }*/
 
 
   

@@ -1,5 +1,5 @@
 import { Equipe } from './equipe';
-import { Musica } from './Musica';
+import { MusicaRepertorio } from './MusicaRepertorio';
 
 export interface Repertorio {
     id?: number;
@@ -7,6 +7,5 @@ export interface Repertorio {
     criador?: string;
     totalMusicas?: number;
     equipeDoDia?: Equipe;
-    musicasRepertorio?: Musica[]
-    
+    musicasRepertorio?: MusicaRepertorio[]
 }

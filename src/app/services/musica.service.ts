@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
+import { Musica } from '../model/MusicaRepertorio';
 
 
 @Injectable({
@@ -18,9 +19,8 @@ import { MusicasAllDto } from './../model/MusicasAll.dto';
             return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas`);
         }
 
-        public musicasPorId(id: number): Observable<MusicasAllDto> {
-            console.log(id)
-            return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas/${id}`);
+        public musicasId(id: number): Observable<Musica> {
+            return this.http.get<Musica>(`${API_CONFIG.baseUrl}/musicas/${id}`);
         }
 
 }
