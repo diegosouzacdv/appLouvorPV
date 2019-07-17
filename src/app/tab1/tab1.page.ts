@@ -15,25 +15,25 @@ import { Repertorio } from '../model/Repertorio';
 export class Tab1Page implements OnInit {
 
   public usuario: User = {
-    id:'',
+    id: '',
     email: '',
     ativo: true,
     pessoa: {
       nome: '',
       telefone: '',
-  },
-  imageUrl: '',
-  funcao: [
-    {
+    },
+    imageUrl: '',
+    funcao: [
+      {
+        id: 0,
+        nome: ''
+      }
+    ],
+    igreja: {
       id: 0,
-      nome:''
+      nome: ''
     }
-  ],
-  igreja: {
-    id: 0,
-    nome: ''
-  }
-  }
+  };
   public repertorios: Repertorio = {
     id: 0,
     data: '',
@@ -45,40 +45,40 @@ export class Tab1Page implements OnInit {
       tecladista: '',
       violonista: '',
       ministro: ['']
-  },
-    musicasRepertorio: [
-      {
-      id: 0,
-      nome: 'teste',
-      dataInserida: '',
-      notaOriginal: '',
-      notaTocada: '',
-      grupo: {
+    },
+    musicasRepertorio: [{
+      musica: {
         id: 0,
-        nome: '',
-      },
-      categorias: {
-        id: 0,
-        nome: '',
-      },
-      estudo: {
-        bpm: 0,
-      cifra: '',
-      guiaInstrumental: '',
-      guiaVocal: '',
-      letra: ''
-      },
-      tutorial: {
-        baixo: [''],
-        bateria: [''],
-        guitarra: [''],
-        teclado: [''],
-        violao: ['']
+        nome: 'teste',
+        dataInserida: '',
+        notaOriginal: '',
+        notaTocada: '',
+        grupo: {
+          id: 0,
+          nome: '',
+        },
+        categorias: {
+          id: 0,
+          nome: '',
+        },
+        estudo: {
+          bpm: 0,
+          cifra: '',
+          guiaInstrumental: '',
+          guiaVocal: '',
+          letra: ''
+        },
+        tutorial: {
+          baixo: [''],
+          bateria: [''],
+          guitarra: [''],
+          teclado: [''],
+          violao: ['']
+        }
       }
-      }
-    ]
-  }
-  public loading: any
+    }]
+  };
+  public loading: any;
 
   constructor(
     private authService: AuthService,
@@ -87,7 +87,7 @@ export class Tab1Page implements OnInit {
     private loadingController: LoadingController,
     public repertorioService: RepertorioService,
     public menu: MenuController
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.getuser();
@@ -96,12 +96,12 @@ export class Tab1Page implements OnInit {
 
   public getuser() {
     let localUser = this.storage.getLocalUser();
-    if(localUser && localUser.email) {
+    if (localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
           this.usuario = response;
         },
-        error => {});
+          error => { });
     }
     else {
       this.authService.logout()
@@ -116,11 +116,11 @@ export class Tab1Page implements OnInit {
           this.repertorios = response;
           console.log(this.repertorios);
         },
-        error => {
-        })
-    }finally {
-        this.loading.dismiss();
-      }
+          error => {
+          });
+    } finally {
+      this.loading.dismiss();
+    }
   }
 
   public async presentLoading() {
@@ -134,17 +134,17 @@ export class Tab1Page implements OnInit {
   async ionViewDidEnter() {
     try {
       await this.authService.refreshToken()
-      .subscribe(response => {
-        this.authService.sucessfullLogin(response.headers.get('Authorization'));
-      },
-      error => {
-      })
+        .subscribe(response => {
+          this.authService.sucessfullLogin(response.headers.get('Authorization'));
+        },
+          error => {
+          })
     } finally {
 
     }
   }
 
-  public ionViewWillEnter(){
+  public ionViewWillEnter() {
     this.menu.swipeEnable(false);
-   }
+  }
 }

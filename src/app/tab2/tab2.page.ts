@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { MusicaService } from '../services/musica.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
+import { Musica } from '../model/Musica';
 
 @Component({
   selector: 'app-tab2',
@@ -10,8 +11,8 @@ import { MusicasAllDto } from './../model/MusicasAll.dto';
 })
 export class Tab2Page implements OnInit {
 
-  public loading: any
-  public musicas: MusicasAllDto
+  public loading: any;
+  public musicas: MusicasAllDto;
 
   constructor(
     private loadingController: LoadingController,
@@ -31,21 +32,18 @@ export class Tab2Page implements OnInit {
           console.log(response);
         },
         error => {
-        })
-    }finally {
+        });
+    } finally {
         this.loading.dismiss();
       }
   }
-
-  
   public mostrarMusica(id: number) {
-    console.log("chamando pagina individual de música")
-    this.musicaService.musicasPorId(id)
-    .subscribe((response: MusicasAllDto) => {
+    this.musicaService.musicasId(id)
+    .subscribe((response: Musica) => {
       console.log(response);
     },
     error => {
-    })
+    });
   }
 
   public async presentLoading() {

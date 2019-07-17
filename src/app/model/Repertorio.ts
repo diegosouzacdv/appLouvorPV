@@ -7,5 +7,5 @@ export interface Repertorio {
     criador?: string;
     totalMusicas?: number;
     equipeDoDia?: Equipe;
-    musicasRepertorio?: MusicaRepertorio[]
+    musicasRepertorio?: MusicaRepertorio[];
 }

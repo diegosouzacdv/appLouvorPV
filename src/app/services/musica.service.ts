@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
-import { Musica } from '../model/MusicaRepertorio';
+import { Musica } from '../model/Musica';
 
 
 @Injectable({

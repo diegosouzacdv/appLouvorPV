@@ -1,12 +1,150 @@
 <ion-header>
-    <ion-toolbar color="dark">
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
-      <p>{{musica?.nome}} - {{musica?.grupo?.nome}}</p>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-icon slot="start" color="light" name="musical-notes"></ion-icon>
+    <p> &nbsp; {{musica?.nome}} - {{musica?.grupo?.nome}}</p>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content>
-
+<ion-content color="light">
+  <ion-card>
+    <ion-item-divider color="primary">
+      <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+      <ion-label>Dados Gerais</ion-label>
+    </ion-item-divider>
+    <ion-grid>
+      <ion-row class="ion-padding">
+        <ion-col>
+          <ion-text color="primary">
+            <ion-label>Categoria:</ion-label>
+          </ion-text>
+          <div>{{musica?.categorias?.nome}}</div>
+        </ion-col>
+        <ion-col>
+          <ion-text color="primary">
+            <label>Nota Atual:</label>
+          </ion-text>
+          <div>{{musica?.notaTocada}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-item-divider color="primary">
+      <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+      <ion-label>Estudo: </ion-label>
+    </ion-item-divider>
+    <ion-grid>
+      <ion-row class="ion-padding">
+        <ion-col>
+          <ion-text color="primary">
+            <label>BPM: {{musica?.estudo?.bpm}}</label>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-chip (click)="navegadorApp(musica.estudo.guiaVocal)">
+            <ion-icon name="microphone" color="dark"></ion-icon>
+            <ion-label>Guia Vocal</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip  (click)="navegadorApp(musica.estudo.guiaInstrumental)">
+            <ion-icon name="open" color="dark"></ion-icon>
+            <ion-label>Guia Instrumental</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip  (click)="navegadorApp(musica.estudo.letra)">
+            <ion-icon name="open" color="dark"></ion-icon>
+            <ion-label>Letra</ion-label>
+          </ion-chip>
+        </ion-col>
+        <ion-col>
+          <ion-chip  (click)="navegadorApp(musica.estudo.cifra)">
+            <ion-icon name="open" color="dark"></ion-icon>
+            <ion-label>Cifra</ion-label>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+      <ion-item-divider color="primary">
+        <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+        <ion-label>Tutoriais</ion-label>
+      </ion-item-divider>
+      <ion-grid>
+          <ion-row >
+            <ion-col size="6">
+              <ion-text color="primary">
+                <label>Violão:</label>
+              </ion-text>
+            </ion-col>
+            <ion-col size="6">
+                <ion-text color="primary">
+                  <label>Teclado:</label>
+                </ion-text>
+              </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col size="6" *ngFor="let violao of musica?.tutorial.violao; index as i;">
+              <ion-chip (click)="navegadorApp(violao)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>{{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+            <ion-col size="6" *ngFor="let teclado of musica?.tutorial.teclado; index as i;">
+                <ion-chip (click)="navegadorApp(teclado)">
+                  <ion-icon name="open" color="dark"></ion-icon>
+                  <ion-label>{{i + 1}}</ion-label>
+                </ion-chip>
+              </ion-col>
+          </ion-row>
+          <ion-row >
+              <ion-col size="6">
+                <ion-text color="primary">
+                  <label>Guitarra:</label>
+                </ion-text>
+              </ion-col>
+              <ion-col size="6">
+                  <ion-text color="primary">
+                    <label>Baixo:</label>
+                  </ion-text>
+                </ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col size="6" *ngFor="let guitarra of musica?.tutorial.guitarra; index as i;">
+                  <ion-chip (click)="navegadorApp(guitarra)">
+                    <ion-icon name="open" color="dark"></ion-icon>
+                    <ion-label>{{i + 1}}</ion-label>
+                  </ion-chip>
+                </ion-col>
+                <ion-col size="6" *ngFor="let baixo of musica?.tutorial.baixo; index as i;">
+                    <ion-chip (click)="navegadorApp(baixo)">
+                      <ion-icon name="open" color="dark"></ion-icon>
+                      <ion-label>{{i + 1}}</ion-label>
+                    </ion-chip>
+                  </ion-col>
+              </ion-row>
+              <ion-row >
+                  <ion-col size="12">
+                    <ion-text color="primary">
+                      <label>Bateria:</label>
+                    </ion-text>
+                  </ion-col>
+                </ion-row>
+                <ion-row >
+                    <ion-col size="6" *ngFor="let bateria of musica?.tutorial.bateria; index as i;">
+                      <ion-chip (click)="navegadorApp(bateria)">
+                        <ion-icon name="open" color="dark"></ion-icon>
+                        <ion-label>{{i + 1}}</ion-label>
+                      </ion-chip>
+                    </ion-col>
+                  </ion-row>
+        </ion-grid>
+    </ion-card>
 </ion-content>

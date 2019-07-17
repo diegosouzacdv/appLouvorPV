@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { MusicaService } from 'src/app/services/musica.service';
-import { Musica } from 'src/app/model/MusicaRepertorio';
+import { Musica } from 'src/app/model/Musica';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-musica',
@@ -14,7 +15,6 @@ export class MusicaPage implements OnInit {
   public id: string;
   public loading: any;
   public musica: Musica = {
-    musica: {
       id: 0,
       nome: '',
       dataInserida: '',
@@ -42,22 +42,23 @@ export class MusicaPage implements OnInit {
         teclado: [''],
         violao: ['']
       }
-      }
-  }
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private loadingController: LoadingController,
-    public musicaService: MusicaService
+    public musicaService: MusicaService,
+    private iab: InAppBrowser
   ) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    // tslint:disable-next-line: radix
     this.repertorioId(parseInt(this.id));
   }
 
   public async repertorioId(id: number) {
-    console.log(id)
+    console.log(id);
     await this.presentLoading();
     try {
       await this.musicaService.musicasId(id)
@@ -66,8 +67,8 @@ export class MusicaPage implements OnInit {
           console.log(this.musica);
         },
         error => {
-        })
-    }finally {
+        });
+    } finally {
         this.loading.dismiss();
       }
   }
@@ -77,6 +78,14 @@ export class MusicaPage implements OnInit {
       message: 'Por favor, aguarde...'
     });
     return this.loading.present();
+  }
+
+  navegadorApp(url: string) {
+    this.iab.create(`${url}`, `_blank`);
+  }
+
+  navegadorSystem(url: string) {
+    this.iab.create(`${url}`, `_system`);
   }
 
 }
