@@ -15,7 +15,7 @@ import { Repertorio } from '../model/Repertorio';
 export class Tab1Page implements OnInit {
 
   public usuario: User = {
-    id: '',
+    id: 0,
     email: '',
     ativo: true,
     pessoa: {

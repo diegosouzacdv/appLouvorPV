@@ -22,7 +22,7 @@ export class Tab3Page implements OnInit {
     ) { }
     
     public usuario: User = {
-      id:'',
+      id: 0,
       email: '',
       ativo: true,
       pessoa: {
@@ -47,7 +47,7 @@ export class Tab3Page implements OnInit {
   }
 
   public getuser() {
-    let localUser = this.storage.getLocalUser();
+    const localUser = this.storage.getLocalUser();
     if(localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {

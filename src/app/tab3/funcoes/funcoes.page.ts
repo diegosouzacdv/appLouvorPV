@@ -33,11 +33,12 @@ export class FuncoesPage implements OnInit {
   }
 
   public getUsuario(){
-    let localUser = this.storage.getLocalUser();
+    const localUser = this.storage.getLocalUser();
     if(localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
-          this.usuario = response
+          console.log(response)
+          this.usuario = response;
         },
         error => {});
     }
@@ -80,7 +81,7 @@ export class FuncoesPage implements OnInit {
 
 
   public showInsertOk() {
-    let alert = this.alertCtrl.create({
+    const alert = this.alertCtrl.create({
       header: 'Sucesso!',
       message: 'Atualização feita com sucesso',
       backdropDismiss:false,

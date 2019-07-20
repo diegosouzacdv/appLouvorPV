@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { UsuarioNewDto } from '../model/usuarioNew.dto';
-import { UsuarioDadosPessoaisDto } from '../model/usuarioDadosPessoais.dto';
 import { User } from './../model/user';
 import { Funcao } from './../model/funcao';
 
@@ -20,12 +19,16 @@ import { Funcao } from './../model/funcao';
         return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
     }
 
+    public getAllUser(): Observable<User> {
+        return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios`);
+    }
+
     public todasFuncoes(): Observable<Funcao> {
         return this.http.get<Funcao>(`${API_CONFIG.baseUrl}/funcoes`);
     }
 
-    public getImageFromBucket(id: string): Observable<any> {
-        let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`
+    public getImageFromBucket(id: number): Observable<any> {
+        const url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`;
         return this.http.get(url, {responseType: 'blob'});
     }
 
@@ -39,8 +42,7 @@ import { Funcao } from './../model/funcao';
     }
 
     public atualizarDadosPessoaisUsuario(obj: User) {
-        delete(obj.perfis)
-    console.log(obj)
+        delete(obj.perfis);
         return this.http.put(`${API_CONFIG.baseUrl}/usuarios/pessoais/${obj.id}`, obj,
             {
                 observe: 'response',

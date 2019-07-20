@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UsuarioDadosPessoaisDto } from 'src/app/model/usuarioDadosPessoais.dto';
 import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { NavController, LoadingController, AlertController } from '@ionic/angular';

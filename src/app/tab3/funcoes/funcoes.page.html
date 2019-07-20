@@ -24,14 +24,11 @@
   </ion-card>
   <br>
   <ion-card color="primary">
-
     <ion-label>Nova Função</ion-label>
       <ion-item *ngFor="let funcao of todasFuncoes" color="primary">
           <ion-label> {{funcao.nome}}</ion-label>
           <ion-toggle (ionChange)="recebeItem($event, funcao)" checked="false" color="danger"></ion-toggle>
         </ion-item>
-  
-      
   </ion-card>
 
   <ion-col>

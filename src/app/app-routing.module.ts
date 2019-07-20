@@ -10,15 +10,9 @@ const routes: Routes = [
   { path: 'pessoal', loadChildren: './tab3/dados-pessoais/dados-pessoais.module#DadosPessoaisPageModule' },
   { path: 'funcoes', loadChildren: './tab3/funcoes/funcoes.module#FuncoesPageModule' },
   { path: 'repertorio/:id', loadChildren: './tab1/repertorio/repertorio.module#RepertorioPageModule' },
-  { path: 'musica/:id', loadChildren: './tab2/musica/musica.module#MusicaPageModule' }
+  { path: 'musica/:id', loadChildren: './tab2/musica/musica.module#MusicaPageModule' },
+  { path: 'allUser', loadChildren: './tab4/all-user/all-user.module#AllUserPageModule' },
 
-
-
-
-
- // { path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
- // { path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
- // { path: 'tab3', loadChildren: './tab3/tab3.module#Tab3PageModule' },
 ];
 
 @NgModule({
