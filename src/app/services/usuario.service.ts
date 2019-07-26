@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { UsuarioNewDto } from '../model/usuarioNew.dto';
 import { User } from './../model/user';
 import { Funcao } from './../model/funcao';
+import { Identifiers } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root'
@@ -44,6 +45,16 @@ import { Funcao } from './../model/funcao';
     public atualizarDadosPessoaisUsuario(obj: User) {
         delete(obj.perfis);
         return this.http.put(`${API_CONFIG.baseUrl}/usuarios/pessoais/${obj.id}`, obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
+    public atualizarPermissaoUsuario(perfil: number, id: number ) {
+        const obj = '';
+        return this.http.put(`${API_CONFIG.baseUrl}/usuarios/perfil/${perfil}/${id}`, obj,
             {
                 observe: 'response',
                 responseType: 'text'

@@ -14,26 +14,33 @@
 </ion-header>
 
 <ion-content color="primary" fullscreen>
+  <div *ngFor="let usuario of usuarios">
   <ion-card>
-    <ion-list>
-      <ion-item *ngFor="let usuario of usuarios">
-        <ion-avatar slot="start">
-          <img src="assets/imgs/avatar.jpg">
-        </ion-avatar>
+    <ion-list lines="none">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="assets/imgs/avatar.jpg">
+          </ion-avatar>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label>{{usuario.nome}}</ion-label>
+                <ion-note slot="end">{{usuario.perfil}}</ion-note>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-item>
         <ion-row>
           <ion-col>
-            <ion-label>
-              <h2>{{usuario.nome}}</h2>
-              <p>{{usuario.perfil}}</p>
-            </ion-label>
-          </ion-col>
-          <ion-col>
-            <ion-chip color="dark">
-              <ion-label>Usuarios</ion-label>
-            </ion-chip>
+            Alterar Permissões:
+            <ion-select placeholder='Permissões' (ionChange)="mudarPermissoes($event, usuario)"
+              interface="action-sheet">
+              <ion-select-option value="2">Usuario</ion-select-option>
+              <ion-select-option value="1">Admin</ion-select-option>
+            </ion-select>
           </ion-col>
         </ion-row>
-      </ion-item>
-    </ion-list>
-  </ion-card>
+      </ion-list>
+    </ion-card>
+  </div>
 </ion-content>

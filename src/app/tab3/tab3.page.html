@@ -15,6 +15,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-item>
       <ion-avatar class="user-profile user-avatar" slot="start">
@@ -49,7 +52,7 @@
         </ion-col>
         <ion-col>
           <ion-button size="small" shape="round" routerLink="/pessoal">
-            <ion-ripple-effect ></ion-ripple-effect>Editar
+            <ion-ripple-effect></ion-ripple-effect>Editar
           </ion-button>
         </ion-col>
       </ion-row>
