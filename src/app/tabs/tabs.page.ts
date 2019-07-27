@@ -13,7 +13,7 @@ export class TabsPage implements OnInit {
   ngOnInit() {
   }
 
-  public ionViewWillEnter(){
+  public ionViewWillEnter() {
     this.menu.swipeEnable(false);
    }
 

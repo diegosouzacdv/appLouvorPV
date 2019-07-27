@@ -147,4 +147,9 @@ export class Tab1Page implements OnInit {
   public ionViewWillEnter() {
     this.menu.swipeEnable(false);
   }
+
+  public logout() {
+    // tslint:disable-next-line: no-unused-expression
+    this.authService.logout();
+  }
 }

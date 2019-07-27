@@ -9,10 +9,10 @@ import { User } from '../model/user';
   })
   export class StorageService {
 
-    public usuario: User
+    public usuario: User;
 
     getLocalUser(): LocalUser {
-        let usr = localStorage.getItem(STORAGE_KEYS.localUser);
+        const usr = localStorage.getItem(STORAGE_KEYS.localUser);
         if (usr == null) {
             return null;
         } else {
@@ -21,10 +21,10 @@ import { User } from '../model/user';
     }
 
     setLocalUser(obj: LocalUser ) {
-        if(obj == null) {
+        if (obj == null) {
             localStorage.removeItem(STORAGE_KEYS.localUser);
         } else {
             localStorage.setItem(STORAGE_KEYS.localUser, JSON.stringify(obj));
         }
     }
-  }  
+  }

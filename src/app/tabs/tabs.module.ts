@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from '../guards/auth.guard';
+import { LoginGuard } from '../guards/login.guard';
 
 const routes: Routes = [
   {
@@ -16,8 +18,8 @@ const routes: Routes = [
         path: 'tab1',
         children: [
           {
-            path:'',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            path: '',
+            loadChildren: '../tab1/tab1.module#Tab1PageModule', canActivate: [AuthGuard]
           }
         ]
       },
@@ -25,8 +27,8 @@ const routes: Routes = [
         path: 'tab2',
         children: [
           {
-            path:'',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            path: '',
+            loadChildren: '../tab2/tab2.module#Tab2PageModule', canActivate: [AuthGuard]
           }
         ]
       },
@@ -34,8 +36,8 @@ const routes: Routes = [
         path: 'tab3',
         children: [
           {
-            path:'',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            path: '',
+            loadChildren: '../tab3/tab3.module#Tab3PageModule', canActivate: [AuthGuard]
           }
         ]
       },
@@ -43,17 +45,17 @@ const routes: Routes = [
         path: 'tab4',
         children: [
           {
-            path:'',
-            loadChildren: '../tab4/tab4.module#Tab4PageModule'
+            path: '',
+            loadChildren: '../tab4/tab4.module#Tab4PageModule', canActivate: [AuthGuard]
           }
         ]
       },
     ]
   },
   {
-    path:'',
+    path: '',
     redirectTo: 'tabs/tab1',
-    pathMatch:'full'
+    pathMatch: 'full'
   }
 ];
 

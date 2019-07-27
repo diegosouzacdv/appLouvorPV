@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_CONFIG } from './../config/api.config';
 import { LocalUser } from './../model/local_user';
 import { StorageService } from './storage.service';
-import { JwtHelper } from 'angular2-jwt'
+import { JwtHelper } from 'angular2-jwt';
 
 
 
@@ -27,7 +27,7 @@ export class AuthService {
 
   public authenticate(login: CredenciaisDTO) {
    return this.http.post(
-     `${API_CONFIG.baseUrl}/login`, 
+     `${API_CONFIG.baseUrl}/login`,
      login,
      {
        observe: 'response',
@@ -37,7 +37,7 @@ export class AuthService {
 
   public refreshToken() {
     return this.http.post(
-      `${API_CONFIG.baseUrl}/auth/refresh_token`, 
+      `${API_CONFIG.baseUrl}/auth/refresh_token`,
       {},
       {
         observe: 'response',
@@ -46,8 +46,8 @@ export class AuthService {
    }
 
   public sucessfullLogin(authorizationValue: string) {
-    let tok = authorizationValue.substring(7);
-    let user: LocalUser = {
+    const tok = authorizationValue.substring(7);
+    const user: LocalUser = {
       token: tok,
       email: this.jwtHelper.decodeToken(tok).sub
     };
@@ -58,4 +58,9 @@ export class AuthService {
     this.storage.setLocalUser(null);
     this.navCtrl.navigateRoot('/login');
   }
+
+ public getUserporEmail(email: string) {
+  return this.http.get<User>(
+    `${API_CONFIG.baseUrl}/usuarios/email?value=${email}`);
+ }
 }

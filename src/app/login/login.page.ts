@@ -6,6 +6,7 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { CredenciaisDTO } from '../model/CredenciaisDTO';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { LoginGuard } from './../guards/login.guard';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,8 @@ export class LoginPage implements OnInit {
               private authService: AuthService,
               public navCtrl: NavController,
               public menu: MenuController,
-              public formBuilder: FormBuilder
+              public formBuilder: FormBuilder,
+              public loginGuard: LoginGuard
   ) {
     this.formGroup = this.formBuilder.group({
       nome: ['teste', [Validators.required]],
@@ -58,7 +60,7 @@ export class LoginPage implements OnInit {
       await this.authService.authenticate(this.userLogin)
         .subscribe(response => {
           this.authService.sucessfullLogin(response.headers.get('Authorization'));
-          this.navCtrl.navigateRoot('/tabs/tab1');
+          this.loginGuard.canActivate();
           this.loading.dismiss();
         },
           error => {
@@ -67,8 +69,8 @@ export class LoginPage implements OnInit {
     } finally {
       this.loading.dismiss();
     }
-    //this.formgrup.controls.estadoId.setValue(this.estados[0].id) -> atribuir o primeiro estado selecionado
-    //this.formGroup.value.estadoId -> pega o Id do estado selecionao
+    // this.formgrup.controls.estadoId.setValue(this.estados[0].id) -> atribuir o primeiro estado selecionado
+    // this.formGroup.value.estadoId -> pega o Id do estado selecionao
   }
 
   public async novoUsuario() {
