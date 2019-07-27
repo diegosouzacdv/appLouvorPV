@@ -28,7 +28,7 @@
         <ion-col>
           <ion-item color="primary">
             <ion-label position="floating">Telefone</ion-label>
-            <ion-input type="text" [(ngModel)]="usuario.pessoa.telefone"></ion-input>
+            <ion-input type="text" mask="(00) 00000-0000" maxlength="15" [(ngModel)]="usuario.pessoa.telefone"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

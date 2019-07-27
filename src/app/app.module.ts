@@ -23,7 +23,8 @@ import { RepertorioService } from './services/repertorio.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule],
+  // tslint:disable-next-line: max-line-length
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule],
 
 
 providers: [

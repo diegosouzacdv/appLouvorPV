@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="container top" >
+  <div class="container top">
     <!-- <img src="/assets/img/logo.png"> -->
     <div class="titulo">
       <!-- <h1>Palavra viva</h1> -->
@@ -9,56 +9,64 @@
   </div>
 
   <ion-slides pager="true" scrollbar="true" [options]="slideOpts" color="light">
-    <ion-slide >
+    <ion-slide>
       <div class="slide-inner ion-padding">
         <div class="titulo3"><span>Login</span></div>
         <form [formGroup]="formGroup">
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userLogin.email"></ion-input>
-        </ion-item>
-        <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>Valor inválido</p>
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="email" placeholder="E-mail" formControlName="email" [(ngModel)]="userLogin.email">
+            </ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>
+            Valor inválido</p>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.senha" formControlName="senha"></ion-input>
-        </ion-item>
-        <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>Valor inválido</p>
+          <ion-item class="ion-margin-top" lines="none">
+            <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.senha" formControlName="senha">
+            </ion-input>
+          </ion-item>
+          <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>
+            Valor inválido</p>
 
-        <ion-button class="ion-margin-top" (click)="login()" expand="block">
-          Entrar
-        </ion-button>
-      </form>
+          <ion-button class="ion-margin-top" (click)="login()" expand="block">
+            Entrar
+          </ion-button>
+        </form>
       </div>
     </ion-slide>
     <ion-slide>
-        <div class="slide-inner ion-padding">
-          <div class="titulo3"><span>Cadastro</span></div>
-          <form [formGroup]="formGroup">
+      <div class="slide-inner ion-padding">
+        <div class="titulo3"><span>Cadastro</span></div>
+        <form [formGroup]="formGroup">
           <ion-item class="ion-margin-top" lines="none">
             <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
           </ion-item>
-          <p class="danger" *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>Valor inválido</p>
+          <p class="danger" *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>
+            Valor inválido</p>
 
           <ion-item class="ion-margin-top" lines="none">
-            <ion-input formControlName="telefone" type="text" placeholder="Telefone"></ion-input>
+            <ion-input formControlName="telefone" type="text" mask="(00) 00000-0000" maxlength="15" placeholder="Telefone"></ion-input> 
           </ion-item>
-          <p class="danger" *ngIf="formGroup.controls['telefone'].dirty && formGroup.controls['telefone'].errors" margin-left>Valor inválido</p>
+          <p class="danger" *ngIf="formGroup.controls['telefone'].dirty && formGroup.controls['telefone'].errors"
+            margin-left>Valor inválido</p>
 
           <ion-item class="ion-margin-top" lines="none">
-            <ion-input formControlName="email" type="email" placeholder="E-mail" ></ion-input>
+            <ion-input formControlName="email" type="email" placeholder="E-mail"></ion-input>
           </ion-item>
-          <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>Valor inválido</p>
-  
+          <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>
+            Valor inválido</p>
+
           <ion-item class="ion-margin-top" lines="none">
-            <ion-input formControlName="senha" type="password" placeholder="Senha" ></ion-input>
+            <ion-input formControlName="senha" type="password" placeholder="Senha"></ion-input>
           </ion-item>
-          <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>Valor inválido</p>
+          <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>
+            Valor inválido</p>
 
           <ion-button class="ion-margin-top" (click)="novoUsuario()" expand="block" [disabled]="formGroup.invalid">
             Cadastrar
           </ion-button>
         </form>
-        </div>
-      </ion-slide>
+      </div>
+    </ion-slide>
   </ion-slides>
 
   <div class="preocean"> </div>
