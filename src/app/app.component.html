@@ -1,34 +1,3 @@
 <ion-app>
-  <!-- <ion-router-outlet></ion-router-outlet> -->
-  <ion-split-pane>
-    <ion-menu side="start" type="overlay">
-      <ion-header>
-        <ion-toolbar color="dark">
-          <ion-title>Louvor PV</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content color="primary">
-       <ion-list>
-         <ion-item  [routerLink]="[ '/tabs/tab1' ]" routerLinkActive="active" color="primary">
-           <ion-label >Inicio</ion-label>
-         </ion-item>
-         <ion-item  [routerLink]="[ '/home' ]" routerLinkActive="active" color="primary">
-            <ion-label>home</ion-label>
-          </ion-item>
-          <ion-item color="primary">
-            <ion-label>Admin</ion-label>
-            <ion-select interface="popover">
-              <ion-select-option value="nes">NES</ion-select-option>
-              <ion-select-option value="n64">Nintendo64</ion-select-option>
-              <ion-select-option value="ps">PlayStation</ion-select-option>
-              <ion-select-option value="genesis">Sega Genesis</ion-select-option>
-              <ion-select-option value="saturn">Sega Saturn</ion-select-option>
-              <ion-select-option value="snes">SNES</ion-select-option>
-            </ion-select>
-          </ion-item>
-       </ion-list>
-      </ion-content>
-    </ion-menu>
     <ion-router-outlet main></ion-router-outlet>
-  </ion-split-pane>
 </ion-app>

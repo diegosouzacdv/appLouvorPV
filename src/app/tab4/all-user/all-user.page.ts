@@ -65,6 +65,14 @@ export class AllUserPage implements OnInit {
     await alert.present();
   }
 
+  public doRefresh(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.getAllUser();
+      event.target.complete();
+    }, 2000);
+  }
+
   /*public mudarPermissoes(usuario, value) {
     console.log(value.detail.value)
     console.log(usuario.id)

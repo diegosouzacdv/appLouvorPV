@@ -53,4 +53,12 @@ export class Tab2Page implements OnInit {
     return this.loading.present();
   }
 
+  public doRefresh(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.todasMusicas();
+      event.target.complete();
+    }, 2000);
+  }
+
 }

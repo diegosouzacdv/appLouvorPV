@@ -88,4 +88,14 @@ export class MusicaPage implements OnInit {
     this.iab.create(`${url}`, `_system`);
   }
 
+  public doRefresh(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.id = this.activatedRoute.snapshot.paramMap.get('id');
+      // tslint:disable-next-line: radix
+      this.repertorioId(parseInt(this.id));
+      event.target.complete();
+    }, 2000);
+  }
+
 }

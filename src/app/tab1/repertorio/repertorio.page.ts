@@ -10,9 +10,9 @@ import { RepertorioService } from 'src/app/services/repertorio.service';
   styleUrls: ['./repertorio.page.scss'],
 })
 export class RepertorioPage implements OnInit {
-  
+
   public id: string;
-  public loading: any
+  public loading: any;
   public repertorio: Repertorio = {
     id: 0,
     data: '',
@@ -57,7 +57,7 @@ export class RepertorioPage implements OnInit {
       }
     }
     ]
-  }
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -67,6 +67,7 @@ export class RepertorioPage implements OnInit {
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    // tslint:disable-next-line: radix
     this.repertorioId(parseInt(this.id));
   }
 
@@ -79,8 +80,8 @@ export class RepertorioPage implements OnInit {
           console.log(this.repertorio);
         },
         error => {
-        })
-    }finally {
+        });
+    } finally {
         this.loading.dismiss();
       }
   }
@@ -90,6 +91,16 @@ export class RepertorioPage implements OnInit {
       message: 'Por favor, aguarde...'
     });
     return this.loading.present();
+  }
+
+  public doRefresh(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.id = this.activatedRoute.snapshot.paramMap.get('id');
+      // tslint:disable-next-line: radix
+      this.repertorioId(parseInt(this.id));
+      event.target.complete();
+    }, 2000);
   }
 
 }

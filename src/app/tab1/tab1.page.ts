@@ -152,4 +152,13 @@ export class Tab1Page implements OnInit {
     // tslint:disable-next-line: no-unused-expression
     this.authService.logout();
   }
+
+  public doRefresh(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.getuser();
+      this.todosRepertorios();
+      event.target.complete();
+    }, 2000);
+  }
 }
