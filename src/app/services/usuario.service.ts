@@ -12,6 +12,7 @@ import { Identifiers } from '@angular/compiler';
     providedIn: 'root'
   })
   export class UsuarioService {
+  
     constructor(
         public http: HttpClient,
         public storage: StorageService){}
@@ -22,6 +23,10 @@ import { Identifiers } from '@angular/compiler';
 
     public getAllUser(): Observable<User> {
         return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios`);
+    }
+
+    public getNovosUsuarios(): Observable<User> {
+        return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios/novosusuarios`);
     }
 
     public todasFuncoes(): Observable<Funcao> {

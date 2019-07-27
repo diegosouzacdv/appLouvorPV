@@ -1,0 +1,48 @@
+<ion-header translucent>
+    <ion-toolbar color="dark">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+       Novos Usuários
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content color="primary" fullscreen>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <div *ngFor="let usuario of usuarios">
+      <ion-card>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/avatar.jpg">
+            </ion-avatar>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label>{{usuario.nome}}</ion-label>
+                  <ion-note slot="end">{{usuario.telefone}}</ion-note>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              Liberar Usuário:
+              <ion-select placeholder='Ativar'
+                interface="action-sheet">
+                <ion-select-option value="1">Ativar</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </ion-card>
+    </div>
+  </ion-content>

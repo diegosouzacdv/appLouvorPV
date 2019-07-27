@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'repertorio/:id', loadChildren: './tab1/repertorio/repertorio.module#RepertorioPageModule', canActivate: [AuthGuard]  },
   { path: 'musica/:id', loadChildren: './tab2/musica/musica.module#MusicaPageModule', canActivate: [AuthGuard]  },
   { path: 'allUser', loadChildren: './tab4/all-user/all-user.module#AllUserPageModule', canActivate: [AuthGuard]  },
+  { path: 'novosusuarios', loadChildren: './tab4/novos-usuarios/novos-usuarios.module#NovosUsuariosPageModule' },
+
 
 ];
 
