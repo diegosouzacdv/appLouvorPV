@@ -6,13 +6,11 @@ import { StorageService } from './storage.service';
 import { UsuarioNewDto } from '../model/usuarioNew.dto';
 import { User } from './../model/user';
 import { Funcao } from './../model/funcao';
-import { Identifiers } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root'
   })
   export class UsuarioService {
-  
     constructor(
         public http: HttpClient,
         public storage: StorageService){}
@@ -25,9 +23,20 @@ import { Identifiers } from '@angular/compiler';
         return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios`);
     }
 
-    public getNovosUsuarios(): Observable<User> {
-        return this.http.get<User>(`${API_CONFIG.baseUrl}/usuarios/novosusuarios`);
+    public getNovosUsuarios(): Observable<User[]> {
+        return this.http.get<User[]>(`${API_CONFIG.baseUrl}/usuarios/novosusuarios`);
     }
+
+    public ativarUsuario(id: number, igreja: string){
+        const obj = '';
+        return this.http.put(`${API_CONFIG.baseUrl}/usuarios/ativar/${id}/${igreja}`, obj,
+            {
+                observe: 'response',
+                responseType: 'text'
+            }
+        );
+    }
+
 
     public todasFuncoes(): Observable<Funcao> {
         return this.http.get<Funcao>(`${API_CONFIG.baseUrl}/funcoes`);
@@ -66,6 +75,4 @@ import { Identifiers } from '@angular/compiler';
             }
         );
     }
-
-
 }

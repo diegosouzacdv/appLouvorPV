@@ -11,9 +11,9 @@ import { User } from './../../model/user';
   styleUrls: ['./dados-pessoais.page.scss'],
 })
 export class DadosPessoaisPage implements OnInit {
-  
-  public usuario: User
-  public loading: any
+
+  public usuario: User;
+  public loading: any;
 
   constructor(
     public storage: StorageService,
@@ -22,21 +22,17 @@ export class DadosPessoaisPage implements OnInit {
     public authService: AuthService,
     private alertCtrl: AlertController,
     private loadingController: LoadingController
-    ) { 
-    
-  }
+    ) {}
 
   ngOnInit() {
-    let localUser = this.storage.getLocalUser();
+    const localUser = this.storage.getLocalUser();
     if(localUser && localUser.email) {
       this.usuarioService.findByEmail(localUser.email)
         .subscribe(response => {
-          this.usuario = response
-          console.log(this.usuario)
+          this.usuario = response;
         },
         error => {});
-    }
-    else {
+    } else {
       this.authService.logout()
     }
   }
@@ -47,7 +43,7 @@ export class DadosPessoaisPage implements OnInit {
         await this.usuarioService.atualizarDadosPessoaisUsuario(this.usuario)
         .subscribe(response => {
           this.showInsertOk();
-          this.navCtrl.navigateRoot('/tabs/tab3')
+          this.navCtrl.navigateRoot('/tabs/tab3');
         },
         error => {});
       } finally {
@@ -56,14 +52,17 @@ export class DadosPessoaisPage implements OnInit {
     }
 
     public showInsertOk() {
-      let alert = this.alertCtrl.create({
+      const alert = this.alertCtrl.create({
         header: 'Sucesso!',
         message: 'Atualização feita com sucesso',
-        backdropDismiss:false,
+        backdropDismiss: false,
         buttons: [
             {text: 'Ok'}
         ]
-      }).then(alert => alert.present())
+      // tslint:disable-next-line: no-shadowed-variable
+      }).then(alert => {
+        return alert.present();
+      });
       }
 
   public async presentLoading() {

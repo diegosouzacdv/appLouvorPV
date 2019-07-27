@@ -27,8 +27,8 @@
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <ion-label>{{usuario.nome}}</ion-label>
-                  <ion-note slot="end">{{usuario.telefone}}</ion-note>
+                  <ion-label>{{usuario?.nome}}</ion-label>
+                  <ion-note slot="end">{{usuario?.telefone}}</ion-note>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -36,13 +36,21 @@
           <ion-row>
             <ion-col>
               Liberar Usuário:
-              <ion-select placeholder='Ativar'
+              <ion-select placeholder='Ativar' (ionChange)="ativarUsuario(usuario)"
                 interface="action-sheet">
                 <ion-select-option value="1">Ativar</ion-select-option>
               </ion-select>
             </ion-col>
           </ion-row>
         </ion-list>
+      </ion-card>
+    </div>
+
+    <div *ngIf="usuarios === null">
+      <ion-card>
+        <ion-item color="dark">
+          <ion-label>No momento sem usuários novos.</ion-label>
+        </ion-item>
       </ion-card>
     </div>
   </ion-content>
