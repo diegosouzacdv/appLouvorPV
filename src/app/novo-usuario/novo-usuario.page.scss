@@ -1,0 +1,104 @@
+
+
+.container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 75%;
+    margin: 0 auto;
+    z-index: 2;
+
+    &.top {
+        top: 5%;
+    }
+    &.bottom {
+        bottom: 30%;
+
+        h1 {
+            color: #fff;
+        }
+    }
+
+
+}
+
+.titulo h2 {
+    color: #fff;
+}
+
+    
+ion-segment-button {
+
+    background: #191919;
+    
+
+    ion-label {
+        color: #fff;
+    }
+
+}
+
+ion-segment-button:hover {
+
+    background: #fff;
+    
+
+    ion-label {
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+}
+
+ion-slides {
+    height: 100%;
+
+    .slide-inner {
+        width: 75%;
+        color: rgba(0, 0, 0, 0.9);
+        background-color: #fff;
+        border-radius: 10px;
+
+        ion-item {
+            --background: rgba(0, 0, 0, 0.9);
+            --border-radius: 10px;
+
+            ion-input {
+                --color: #fff;
+            }
+        }
+        ion-button {
+            --background: rgba(0, 0, 0, 0.9);
+            --color: #fff;
+        }
+        
+    }
+}
+
+ion-content {
+    ion-icon {
+         color: #000;
+         font-size:30px; 
+    }
+}
+
+
+.ocean {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background: rgba(0, 0, 0, 0.9);
+    
+}
+
+.preocean {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 45%;
+    height: 100%;
+    background: black;
+    z-index: 0;
+    
+}

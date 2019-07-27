@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovoUsuarioPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService) { }
 
   ngOnInit() {
+  }
+  public logout() {
+    // tslint:disable-next-line: no-unused-expression
+    this.authService.logout();
   }
 
 }
