@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { API_CONFIG } from 'src/app/config/api.config';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AlertController, NavController } from '@ionic/angular';
-import { User } from 'src/app/model/user';
 import { StorageService } from 'src/app/services/storage.service';
+import { User } from './../../model/user';
 
 @Component({
   selector: 'app-novos-usuarios',
@@ -19,7 +18,7 @@ export class NovosUsuariosPage implements OnInit {
     public navCtrl: NavController
   ) { }
 
-  public usuarios: User[] = new Array();
+  public usuarios: any[] = new Array();
 
   ngOnInit() {
     this.getNovosUsuarios();
@@ -33,7 +32,6 @@ export class NovosUsuariosPage implements OnInit {
             // tslint:disable-next-line: no-unused-expression
             this.usuarios = null;
           }
-          console.log(this.usuarios);
         },
         error => {});
   }

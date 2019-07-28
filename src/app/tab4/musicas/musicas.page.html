@@ -1,11 +1,9 @@
 <ion-header translucent>
   <ion-toolbar color="dark">
     <ion-title>Músicas</ion-title>
-    <ion-buttons slot="end" (click)="logout()">
-      <ion-chip color="light">
-        <ion-label>Sair</ion-label>
-      </ion-chip>
-    </ion-buttons>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -17,10 +15,16 @@
     </ion-searchbar>
   </ion-toolbar>
   <ion-list>
-    <ion-item *ngFor="let musica of musicas" [routerLink]="['/musica', musica.id]" routerDirection="forward">
+    <ion-item *ngFor="let musica of musicas" routerDirection="forward">
       <ion-label>{{musica.nome}}</ion-label>
-      <ion-note slot="start">{{musica.id}}</ion-note>
       <ion-note slot="end">{{musica.grupo}}</ion-note>
+      <ion-note slot="end">
+        <ion-buttons>
+          <ion-chip [routerLink]="['/editarmusica', musica.id]">
+            <ion-label>Editar</ion-label>
+          </ion-chip>
+        </ion-buttons>
+      </ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

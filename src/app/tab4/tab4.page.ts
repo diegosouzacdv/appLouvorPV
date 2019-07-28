@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab4',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab4Page implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public logout() {
+    // tslint:disable-next-line: no-unused-expression
+    this.authService.logout();
   }
 
 }

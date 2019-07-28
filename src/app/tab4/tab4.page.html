@@ -3,10 +3,10 @@
     <ion-title>
       Administrador
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="cog"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="end" (click)="logout()">
+      <ion-chip color="light">
+        <ion-label>Sair</ion-label>
+      </ion-chip>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +22,7 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-chip color="dark" [routerLink]="['/allUser']" >
+            <ion-chip color="dark" [routerLink]="['/allUser']">
               <ion-label>Usuarios</ion-label>
             </ion-chip>
           </ion-col>
@@ -38,20 +38,20 @@
     <ion-card>
       <ion-item-divider color="primary">
         <ion-icon slot="start" color="light" name="musical-notes"></ion-icon>
-          <ion-label>Música</ion-label>
+        <ion-label>Música</ion-label>
       </ion-item-divider>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-chip color="dark">
+            <ion-chip color="dark" [routerLink]="['/musicas']">
               <ion-label>Músicas</ion-label>
             </ion-chip>
           </ion-col>
           <ion-col>
-              <ion-chip color="dark">
-                <ion-label>Nova música</ion-label>
-              </ion-chip>
-            </ion-col>
+            <ion-chip color="dark">
+              <ion-label>Nova música</ion-label>
+            </ion-chip>
+          </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
@@ -61,39 +61,39 @@
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <ion-chip color="dark">
-                  <ion-label>Grupos</ion-label>
-                </ion-chip>
-              </ion-col>
-              <ion-col>
-                  <ion-chip color="dark">
-                    <ion-label>Novo Grupo</ion-label>
-                  </ion-chip>
-                </ion-col>
+          <ion-col>
+            <ion-chip color="dark">
+              <ion-label>Grupos</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col>
+            <ion-chip color="dark">
+              <ion-label>Novo Grupo</ion-label>
+            </ion-chip>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card>
 
     <ion-card>
-        <ion-item-divider color="primary">
-          <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
-          <ion-label>Repertório</ion-label>
-        </ion-item-divider>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-chip color="dark">
-                <ion-label>Histórico</ion-label>
-              </ion-chip>
-            </ion-col>
-            <ion-col>
-              <ion-chip color="dark">
-                <ion-label>Novo Repertório</ion-label>
-              </ion-chip>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card>
+      <ion-item-divider color="primary">
+        <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+        <ion-label>Repertório</ion-label>
+      </ion-item-divider>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-chip color="dark">
+              <ion-label>Histórico</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col>
+            <ion-chip color="dark">
+              <ion-label>Novo Repertório</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   </ion-list>
 </ion-content>

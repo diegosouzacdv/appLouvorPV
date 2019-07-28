@@ -88,4 +88,9 @@ export class Tab3Page implements OnInit, OnDestroy {
       event.target.complete();
     }, 2000);
   }
+
+  public logout() {
+    // tslint:disable-next-line: no-unused-expression
+    this.authService.logout();
+  }
 }

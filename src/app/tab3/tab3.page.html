@@ -3,11 +3,11 @@
     <ion-title>
       Perfil
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="cog"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-buttons slot="end" (click)="logout()">
+        <ion-chip color="light">
+          <ion-label>Sair</ion-label>
+        </ion-chip>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

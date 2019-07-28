@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { MusicasAllDto } from 'src/app/model/MusicasAll.dto';
 import { LoadingController } from '@ionic/angular';
-import { MusicaService } from '../services/musica.service';
-import { MusicasAllDto } from './../model/MusicasAll.dto';
-import { Musica } from '../model/Musica';
-import { AuthService } from '../services/auth.service';
+import { MusicaService } from 'src/app/services/musica.service';
+import { Musica } from 'src/app/model/Musica';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: './tab2.page.html',
-  styleUrls: ['./tab2.page.scss'],
+  selector: 'app-musicas',
+  templateUrl: './musicas.page.html',
+  styleUrls: ['./musicas.page.scss'],
 })
-export class Tab2Page implements OnInit {
+export class MusicasPage implements OnInit {
 
   public loading: any;
   public musicas: MusicasAllDto;
@@ -18,7 +17,6 @@ export class Tab2Page implements OnInit {
   constructor(
     private loadingController: LoadingController,
     private musicaService: MusicaService,
-    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -61,11 +59,6 @@ export class Tab2Page implements OnInit {
       this.todasMusicas();
       event.target.complete();
     }, 2000);
-  }
-
-   public logout() {
-    // tslint:disable-next-line: no-unused-expression
-    this.authService.logout();
   }
 
 }

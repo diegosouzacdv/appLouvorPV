@@ -15,6 +15,9 @@ const routes: Routes = [
   { path: 'musica/:id', loadChildren: './tab2/musica/musica.module#MusicaPageModule', canActivate: [AuthGuard]  },
   { path: 'allUser', loadChildren: './tab4/all-user/all-user.module#AllUserPageModule', canActivate: [AuthGuard]  },
   { path: 'novosusuarios', loadChildren: './tab4/novos-usuarios/novos-usuarios.module#NovosUsuariosPageModule' },
+  { path: 'musicas', loadChildren: './tab4/musicas/musicas.module#MusicasPageModule' },
+  { path: 'editarmusica/:id', loadChildren: './tab4/musicas/editar-musica/editar-musica.module#EditarMusicaPageModule' },
+
 
 
 ];
