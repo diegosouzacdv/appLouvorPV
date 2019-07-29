@@ -15,22 +15,22 @@ import { LoginGuard } from './../guards/login.guard';
 })
 export class LoginPage implements OnInit {
 
-  formGroup: FormGroup;
+  public formGroup: FormGroup;
 
   slideOpts = {
     initialSlide: 0,
     speed: 500
   };
 
-  @ViewChild(IonSlides) slides: IonSlides
-  public wavesPosition: number = 0
-  public wavesDifference: number = 800
+  @ViewChild(IonSlides) slides: IonSlides;
+  public wavesPosition = 0;
+  public wavesDifference = 800;
   public userLogin: CredenciaisDTO = {
     email: '',
     senha: ''
   }
-  public userRegister: User = {}
-  public loading: any
+  public userRegister: User = {};
+  public loading: any;
 
   constructor(public keyboard: Keyboard,
               private loadingController: LoadingController,
@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
       email: ['teste@gmail.com', [Validators.required]],
       telefone: ['61985769860', [Validators.required]],
       senha: ['teste', [Validators.required], Validators.minLength[6]]
-    })
+    });
   }
 
   ngOnInit() {
@@ -74,7 +74,7 @@ export class LoginPage implements OnInit {
   }
 
   public async novoUsuario() {
-    await this.presentLoading()
+    await this.presentLoading();
     try {
       await this.usuarioService.novoUsuario(this.formGroup.value)
         .subscribe(response => {

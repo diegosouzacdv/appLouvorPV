@@ -10,38 +10,315 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-card>
-    <ion-item-divider color="primary">
-      <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
-      <ion-label>Editar</ion-label>
-    </ion-item-divider>
-    <form>
+  <form [formGroup]="formGroup">
+    <ion-card>
+      <ion-item-divider color="primary">
+        <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+        <ion-label>Editar</ion-label>
+      </ion-item-divider>
       <ion-list lines="full" class="ion-no-margin ion-no-padding">
         <ion-row>
           <ion-col size="3">
             <ion-item>
-              <ion-label position="stacked">ID<ion-text color="primary"> {{musica.id}}</ion-text>
+              <ion-label position="stacked">ID<ion-text color="primary"></ion-text>
               </ion-label>
+              <ion-input disabled type="text" formControlName="id" [(ngModel)]="musica.id" name="id"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col>
             <ion-item>
               <ion-label position="stacked">Nome<ion-text color="danger">*</ion-text>
               </ion-label>
-              <ion-input required type="text" [(ngModel)]="musica.nome" name="nome"></ion-input>
+              <ion-input required type="text" formControlName="nome" [(ngModel)]="musica.nome" name="nome"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-              <ion-item>
-                  <ion-label position="stacked">Nota Original<ion-text color="danger">*</ion-text></ion-label>
-                  <ion-input required type="text" [(ngModel)]="musica.nome" name="nome"></ion-input>
-                </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Nota Original<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-select [(ngModel)]="musica.notaOriginal" formControlName="notaOriginal" name="notaOriginal">
+                <ion-select-option *ngFor="let nota of notas" [value]="nota.value">{{nota.label}}</ion-select-option>
+              </ion-select>
+            </ion-item>
           </ion-col>
-        </ion-row>]
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Nota Tocada<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-select [(ngModel)]="musica.notaTocada" formControlName="notaAtual" name="notaAtual">
+                <ion-select-option *ngFor="let nota of notas" [value]="nota.value">{{nota.label}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Grupo<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-select [(ngModel)]="musica.grupo.nome" formControlName="grupo" name="grupo">
+                <ion-select-option *ngFor="let grupo of grupos" [value]="grupo.nome">{{grupo.nome}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="stacked">Categoria<ion-text color="danger">*</ion-text>
+              </ion-label>
+              <ion-select [(ngModel)]="musica.categorias.nome" name="categoria" formControlName="categoria">
+                <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nome">{{categoria.nome}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
       </ion-list>
-    </form>
-  </ion-card>
+    </ion-card>
+    <ion-card>
+      <ion-item-divider color="primary">
+        <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+        <ion-label>Estudo</ion-label>
+      </ion-item-divider>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="stacked">BPM<ion-text color="primary"></ion-text>
+              </ion-label>
+              <ion-input type="text" formControlName="bpm" [(ngModel)]="musica.estudo.bpm" name="bpm"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="10">
+            <ion-item>
+              <ion-label position="stacked">Letra<ion-text color="primary"></ion-text>
+              </ion-label>
+              <ion-input type="text" formControlName="letra" [(ngModel)]="musica.estudo.letra" name="letra"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-chip (click)="navegadorApp(musica.estudo.letra)">
+              <ion-icon name="open" color="dark"></ion-icon>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="10">
+            <ion-item>
+              <ion-label position="stacked">Cifra<ion-text color="primary"></ion-text>
+              </ion-label>
+              <ion-input type="text" formControlName="cifra" [(ngModel)]="musica.estudo.cifra" name="cifra"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-chip (click)="navegadorApp(musica.estudo.cifra)">
+              <ion-icon name="open" color="dark"></ion-icon>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="10">
+            <ion-item>
+              <ion-label position="stacked">Guia Vocal<ion-text color="primary"></ion-text>
+              </ion-label>
+              <ion-input type="text" formControlName="guiaVocal" [(ngModel)]="musica.estudo.guiaVocal" name="guiaVocal">
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-chip (click)="navegadorApp(musica.estudo.guiaVocal)">
+              <ion-icon name="open" color="dark"></ion-icon>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="10">
+            <ion-item>
+              <ion-label position="stacked">Guia Instrumental<ion-text color="primary"></ion-text>
+              </ion-label>
+              <ion-input type="text" formControlName="guiaInstrumental" [(ngModel)]="musica.estudo.guiaInstrumental"
+                name="guiaInstrumental"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2">
+            <ion-chip (click)="navegadorApp(musica.estudo.guiaInstrumental)">
+              <ion-icon name="open" color="dark"></ion-icon>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card>
+  </form>
+  <ion-card>
+    <ion-item-divider color="primary">
+      <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+      <ion-label>Tutorial</ion-label>
+    </ion-item-divider>
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
 
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Violão<ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" #varViolao type="text" name="violao" placeholder="Insira novo link"
+            [(ngModel)]="limpaForm.violao"></ion-input>
+        </ion-col>
+        <ion-col size="12" width-50 style="text-align: left">
+          <ion-button size="small" (click)="novoTutorial(varViolao)">
+            Salvar
+          </ion-button>
+        </ion-col>
+        <ion-row>
+          <ion-col *ngFor="let violao of musica.tutorial.violao ; let i= index">
+            <ion-chip (click)="navegadorApp(violao)">
+              <ion-icon name="open" color="dark"></ion-icon>
+              <ion-label>{{i + 1}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12">
+          <ion-button padding expand="block" size="small" (click)="zerarTutorial(varViolao)">
+            Apagar todos os links
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Guitarra<ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" #varGuitarra type="text" name="guitarra" placeholder="Insira novo link"
+            [(ngModel)]="limpaForm.guitarra">
+          </ion-input>
+        </ion-col>
+        <ion-col size="12" width-50 style="text-align: left">
+          <ion-button size="small" (click)="novoTutorial(varGuitarra)">
+            Salvar
+          </ion-button>
+        </ion-col>
+        <ion-row>
+          <ion-col *ngFor="let guitarra of musica.tutorial.guitarra ; let i= index">
+            <ion-chip (click)="navegadorApp(guitarra)">
+              <ion-icon name="open" color="dark"></ion-icon>
+              <ion-label>{{i + 1}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12" width-50 style="text-align: center">
+          <ion-button padding expand="block" size="small" (click)="zerarTutorial(varGuitarra)">
+            Apagar todos os links
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Teclado<ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" #varTeclado type="text" name="teclado" placeholder="Insira novo link"
+            [(ngModel)]="limpaForm.teclado">
+          </ion-input>
+        </ion-col>
+        <ion-col size="12" width-50 style="text-align: left">
+          <ion-button size="small" (click)="novoTutorial(varTeclado)">
+            Salvar
+          </ion-button>
+        </ion-col>
+        <ion-row>
+          <ion-col *ngFor="let teclado of musica.tutorial.teclado ; let i= index">
+            <ion-chip (click)="navegadorApp(teclado)">
+              <ion-icon name="open" color="dark"></ion-icon>
+              <ion-label>{{i + 1}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12" width-50 style="text-align: center">
+          <ion-button padding expand="block" size="small" (click)="zerarTutorial(varTeclado)">
+            Apagar todos os links
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Baixo<ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" #varBaixo type="text" name="baixo" placeholder="Insira novo link"
+            [(ngModel)]="limpaForm.baixo">
+          </ion-input>
+        </ion-col>
+        <ion-col size="12" width-50 style="text-align: left">
+          <ion-button size="small" (click)="novoTutorial(varBaixo)">
+            Salvar
+          </ion-button>
+        </ion-col>
+        <ion-row>
+          <ion-col *ngFor="let baixo of musica.tutorial.baixo ; let i= index">
+            <ion-chip (click)="navegadorApp(baixo)">
+              <ion-icon name="open" color="dark"></ion-icon>
+              <ion-label>{{i + 1}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12" width-50 style="text-align: center">
+          <ion-button padding expand="block" size="small" (click)="zerarTutorial(varBaixo)">
+            Apagar todos os links
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-label position="stacked">Bateria<ion-text color="danger">*</ion-text>
+          </ion-label>
+        </ion-col>
+        <ion-col size="12">
+          <ion-input type="text" #varBateria type="text" name="bateria" placeholder="Insira novo link"
+            [(ngModel)]="limpaForm.bateria">
+          </ion-input>
+        </ion-col>
+        <ion-col size="12" width-50 style="text-align: left">
+          <ion-button size="small" (click)="novoTutorial(varBateria)">
+            Salvar
+          </ion-button>
+        </ion-col>
+        <ion-row>
+          <ion-col *ngFor="let bateria of musica.tutorial.bateria ; let i= index">
+            <ion-chip (click)="navegadorApp(bateria)">
+              <ion-icon name="open" color="dark"></ion-icon>
+              <ion-label>{{i + 1}}</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        <ion-col size="12" width-50 style="text-align: center">
+          <ion-button padding expand="block" size="small" (click)="zerarTutorial(varBateria)">
+            Apagar todos os links
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+    </ion-list>
+  </ion-card>
+  <ion-button padding expand="block" (click)="updateMusica()">
+    Salvar</ion-button>
+  <ion-item-divider>
+  </ion-item-divider>
 </ion-content>

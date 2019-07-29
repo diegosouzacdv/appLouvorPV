@@ -41,25 +41,25 @@
             <ion-input formControlName="nome" type="text" placeholder="Nome"></ion-input>
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>
-            Valor inválido</p>
+            Nome é obrigatório</p>
 
           <ion-item class="ion-margin-top" lines="none">
             <ion-input formControlName="telefone" type="text" mask="(00) 00000-0000" maxlength="15" placeholder="Telefone"></ion-input> 
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['telefone'].dirty && formGroup.controls['telefone'].errors"
-            margin-left>Valor inválido</p>
+            margin-left>Telefone é obrigatório</p>
 
           <ion-item class="ion-margin-top" lines="none">
             <ion-input formControlName="email" type="email" placeholder="E-mail"></ion-input>
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>
-            Valor inválido</p>
+            E-mail é obrigatório</p>
 
           <ion-item class="ion-margin-top" lines="none">
             <ion-input formControlName="senha" type="password" placeholder="Senha"></ion-input>
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>
-            Valor inválido</p>
+            Senha é obrigatório</p>
 
           <ion-button class="ion-margin-top" (click)="novoUsuario()" expand="block" [disabled]="formGroup.invalid">
             Cadastrar

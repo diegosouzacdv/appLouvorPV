@@ -5,6 +5,8 @@ import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
 import { Musica } from '../model/Musica';
+import { Grupo } from '../model/grupo';
+import { Categoria } from './../model/categoria';
 
 
 @Injectable({
@@ -21,6 +23,24 @@ import { Musica } from '../model/Musica';
 
         public musicasId(id: number): Observable<Musica> {
             return this.http.get<Musica>(`${API_CONFIG.baseUrl}/musicas/${id}`);
+        }
+
+        public getGrupos(): Observable<Grupo[]> {
+            return this.http.get<Grupo[]>(`${API_CONFIG.baseUrl}/grupos`);
+        }
+
+        public getCategorias(): Observable<Categoria[]> {
+            return this.http.get<Categoria[]>(`${API_CONFIG.baseUrl}/categorias`);
+        }
+
+        public atualizarMusica(mus: Musica) {
+            const musica: Musica = mus;
+            return this.http.put(`${API_CONFIG.baseUrl}/musicas/${mus.id}`, musica,
+                {
+                    observe: 'response',
+                    responseType: 'text'
+                }
+            );
         }
 
 }

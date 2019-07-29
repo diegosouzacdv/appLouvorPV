@@ -36,7 +36,6 @@ export class AllUserPage implements OnInit {
 
   async mudarPermissoes(value, usuario) {
     const perfil = value.detail.value;
-    console.log(perfil)
     const alert = await this.alertController.create({
       header: 'Alerta',
       message: 'Confirmar <strong>Alteração de Permissões?</strong>!!!',

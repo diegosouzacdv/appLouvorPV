@@ -27,7 +27,7 @@ import { Funcao } from './../model/funcao';
         return this.http.get<User[]>(`${API_CONFIG.baseUrl}/usuarios/novosusuarios`);
     }
 
-    public ativarUsuario(id: number, igreja: string){
+    public ativarUsuario(id: number, igreja: string) {
         const obj = '';
         return this.http.put(`${API_CONFIG.baseUrl}/usuarios/ativar/${id}/${igreja}`, obj,
             {
