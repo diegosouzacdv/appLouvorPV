@@ -30,6 +30,10 @@ import { MusicaNova } from './../model/MusicaNova';
             return this.http.get<Grupo[]>(`${API_CONFIG.baseUrl}/grupos`);
         }
 
+        public grupoId(id: number): Observable<Grupo>  {
+            return this.http.get<Grupo>(`${API_CONFIG.baseUrl}/grupos/${id}`);
+          }
+
         public getCategorias(): Observable<Categoria[]> {
             return this.http.get<Categoria[]>(`${API_CONFIG.baseUrl}/categorias`);
         }
@@ -43,6 +47,16 @@ import { MusicaNova } from './../model/MusicaNova';
                 }
             );
         }
+
+        atualizarGrupo(gru: Grupo) {
+            const grupo: Grupo = gru;
+            return this.http.put(`${API_CONFIG.baseUrl}/grupos/${gru.id}`, grupo,
+                {
+                    observe: 'response',
+                    responseType: 'text'
+                }
+            );
+          }
 
         public novaMusica(mus: MusicaNova) {
             return this.http.post(`${API_CONFIG.baseUrl}/musicas`, mus,

@@ -16,7 +16,10 @@ const routes: Routes = [
   { path: 'allUser', loadChildren: './tab4/all-user/all-user.module#AllUserPageModule', canActivate: [AuthGuard]  },
   { path: 'novosusuarios', loadChildren: './tab4/novos-usuarios/novos-usuarios.module#NovosUsuariosPageModule' },
   { path: 'musicas', loadChildren: './tab4/musicas/musicas.module#MusicasPageModule' },
-  { path: 'editarmusica/:id', loadChildren: './tab4/musicas/editar-musica/editar-musica.module#EditarMusicaPageModule' },  { path: 'novamusica', loadChildren: './tab4/novamusica/novamusica.module#NovamusicaPageModule' },
+  { path: 'editarmusica/:id', loadChildren: './tab4/musicas/editar-musica/editar-musica.module#EditarMusicaPageModule' },
+  { path: 'novamusica', loadChildren: './tab4/novamusica/novamusica.module#NovamusicaPageModule' },
+  { path: 'grupos', loadChildren: './tab4/grupos/grupos.module#GruposPageModule' },
+  { path: 'editargrupo/:id', loadChildren: './tab4/grupos/editargrupo/editargrupo.module#EditargrupoPageModule' },
 
 
 
