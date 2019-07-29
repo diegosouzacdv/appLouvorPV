@@ -65,6 +65,7 @@ export class EditarMusicaPage implements OnInit {
     private musicaService: MusicaService,
     public formBuilder: FormBuilder,
     public alertController: AlertController,
+    private alertCtrl: AlertController,
     private iab: InAppBrowser,
     public navCtrl: NavController,
   ) {
@@ -178,8 +179,10 @@ export class EditarMusicaPage implements OnInit {
   public async updateMusica() {
     await this.presentLoading();
     try {
+      console.log(this.musica)
       await this.musicaService.atualizarMusica(this.musica)
         .subscribe(response => {
+          this.showInsertOk();
           this.navCtrl.navigateRoot('/tabs/tab4');
         },
           error => {
@@ -230,5 +233,19 @@ export class EditarMusicaPage implements OnInit {
   navegadorSystem(url: string) {
     this.iab.create(`${url}`, `_system`);
   }
+
+  public showInsertOk() {
+    const alert = this.alertCtrl.create({
+      header: 'Sucesso!',
+      message: 'Atualização feita com sucesso',
+      backdropDismiss: false,
+      buttons: [
+          {text: 'Ok'}
+      ]
+    // tslint:disable-next-line: no-shadowed-variable
+    }).then(alert => {
+      return alert.present();
+    });
+    }
 
 }

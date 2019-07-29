@@ -58,8 +58,8 @@
               <ion-item>
                 <ion-label position="stacked">Grupo<ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-select [(ngModel)]="musica.grupo.nome" formControlName="grupo" name="grupo">
-                  <ion-select-option *ngFor="let grupo of grupos" [value]="grupo.nome">{{grupo.nome}}</ion-select-option>
+                <ion-select [(ngModel)]="musica.grupo.id" formControlName="grupo" name="grupo">
+                  <ion-select-option *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nome}}</ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-col>
@@ -67,8 +67,8 @@
               <ion-item>
                 <ion-label position="stacked">Categoria<ion-text color="danger">*</ion-text>
                 </ion-label>
-                <ion-select [(ngModel)]="musica.categorias.nome" name="categoria" formControlName="categoria">
-                  <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.nome">{{categoria.nome}}
+                <ion-select [(ngModel)]="musica.categorias.id" name="categoria" formControlName="categoria">
+                  <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nome}}
                   </ion-select-option>
                 </ion-select>
               </ion-item>

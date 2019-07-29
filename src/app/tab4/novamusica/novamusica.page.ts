@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Musica } from 'src/app/model/Musica';
 import { NotasMusicais } from 'src/app/model/NotasMusicais';
 import { Grupo } from 'src/app/model/grupo';
 import { Categoria } from 'src/app/model/categoria';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
 import { MusicaService } from 'src/app/services/musica.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { MusicaNova } from './../../model/MusicaNova';
@@ -62,7 +60,6 @@ export class NovamusicaPage implements OnInit {
 
   constructor(
     private loadingController: LoadingController,
-    private activatedRoute: ActivatedRoute,
     private musicaService: MusicaService,
     public formBuilder: FormBuilder,
     public alertController: AlertController,
@@ -96,7 +93,8 @@ export class NovamusicaPage implements OnInit {
     try {
       await this.musicaService.novaMusica(this.musica)
          .subscribe(response => {
-          this.navCtrl.navigateRoot('/tabs/tab4');
+           this.showInsertOk();
+           this.navCtrl.navigateRoot('/tabs/tab4');
         },
           error => {
           });
@@ -212,5 +210,19 @@ export class NovamusicaPage implements OnInit {
   navegadorSystem(url: string) {
     this.iab.create(`${url}`, `_system`);
   }
+
+  public showInsertOk() {
+    const alert = this.alertController.create({
+      header: 'Inserido!',
+      message: 'Cadastro feito com sucesso',
+      backdropDismiss: false,
+      buttons: [
+          {text: 'Ok'}
+      ]
+    // tslint:disable-next-line: no-shadowed-variable
+    }).then(alert => {
+      return alert.present();
+    });
+    }
 
 }

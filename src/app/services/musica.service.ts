@@ -45,13 +45,12 @@ import { MusicaNova } from './../model/MusicaNova';
         }
 
         public novaMusica(mus: MusicaNova) {
-            console.log(mus)
-           /* return this.http.post(`${API_CONFIG.baseUrl}/musicas`, mus,
+            return this.http.post(`${API_CONFIG.baseUrl}/musicas`, mus,
                 {
                     observe: 'response',
                     responseType: 'text'
                 }
-            );*/
+            );
         }
 
 }
