@@ -17,7 +17,6 @@ export class MusicaPage implements OnInit {
   public musica: Musica = {
       id: 0,
       nome: '',
-      dataInserida: '',
       notaOriginal: '',
       notaTocada: '',
       grupo: {

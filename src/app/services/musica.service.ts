@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { StorageService } from './storage.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
 import { Musica } from '../model/Musica';
 import { Grupo } from '../model/grupo';
 import { Categoria } from './../model/categoria';
+import { Observable } from 'rxjs';
+import { MusicaNova } from './../model/MusicaNova';
 
 
 @Injectable({
@@ -41,6 +42,16 @@ import { Categoria } from './../model/categoria';
                     responseType: 'text'
                 }
             );
+        }
+
+        public novaMusica(mus: MusicaNova) {
+            console.log(mus)
+           /* return this.http.post(`${API_CONFIG.baseUrl}/musicas`, mus,
+                {
+                    observe: 'response',
+                    responseType: 'text'
+                }
+            );*/
         }
 
 }

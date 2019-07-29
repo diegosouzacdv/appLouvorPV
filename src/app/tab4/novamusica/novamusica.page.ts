@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
-import { MusicaService } from 'src/app/services/musica.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Musica } from 'src/app/model/Musica';
-import { ActivatedRoute } from '@angular/router';
 import { NotasMusicais } from 'src/app/model/NotasMusicais';
 import { Grupo } from 'src/app/model/grupo';
-import { Categoria } from './../../../model/categoria';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Categoria } from 'src/app/model/categoria';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { MusicaService } from 'src/app/services/musica.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { MusicaNova } from './../../model/MusicaNova';
 
 @Component({
-  selector: 'app-editar-musica',
-  templateUrl: './editar-musica.page.html',
-  styleUrls: ['./editar-musica.page.scss'],
+  selector: 'app-novamusica',
+  templateUrl: './novamusica.page.html',
+  styleUrls: ['./novamusica.page.scss'],
 })
-export class EditarMusicaPage implements OnInit {
+export class NovamusicaPage implements OnInit {
+
   public formGroup: FormGroup;
   public id = '';
-  public musica: Musica = {
-    id: 0,
+  public musica: MusicaNova = {
     nome: '',
-    dataInserida: '',
     notaOriginal: '',
     notaTocada: '',
     grupo: {
@@ -32,18 +32,19 @@ export class EditarMusicaPage implements OnInit {
       nome: '',
     },
     estudo: {
-      bpm: 0,
+      bpm: null,
       cifra: '',
       guiaInstrumental: '',
       guiaVocal: '',
       letra: ''
     },
     tutorial: {
-      baixo: [''],
-      bateria: [''],
-      guitarra: [''],
-      teclado: [''],
-      violao: ['']
+      // tslint:disable-next-line: new-parens
+      baixo: new Array(),
+      bateria: new Array(),
+      guitarra: new Array(),
+      teclado: new Array(),
+      violao: new Array()
     }
   };
   public notas = NotasMusicais;
@@ -84,21 +85,18 @@ export class EditarMusicaPage implements OnInit {
     });
   }
 
+
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    // tslint:disable-next-line: radix
-    this.musicaId(parseInt(this.id));
-    this.getGrupos();
     this.getCategorias();
+    this.getGrupos();
   }
 
-  public async musicaId(id: number) {
+  public async novaMusica() {
     await this.presentLoading();
     try {
-      await this.musicaService.musicasId(id)
-        .subscribe((response: Musica) => {
-          this.musica = response;
-          console.log(this.musica);
+      await this.musicaService.novaMusica(this.musica)
+         .subscribe(response => {
+          this.navCtrl.navigateRoot('/tabs/tab4');
         },
           error => {
           });
@@ -175,20 +173,6 @@ export class EditarMusicaPage implements OnInit {
     await alert.present();
   }
 
-  public async updateMusica() {
-    await this.presentLoading();
-    try {
-      await this.musicaService.atualizarMusica(this.musica)
-        .subscribe(response => {
-          this.navCtrl.navigateRoot('/tabs/tab4');
-        },
-          error => {
-          });
-    } finally {
-      this.loading.dismiss();
-    }
-  }
-
   public getGrupos() {
     this.musicaService.getGrupos()
       .subscribe(response => {
@@ -217,8 +201,6 @@ export class EditarMusicaPage implements OnInit {
   public doRefresh(event) {
     console.log('Begin async operation');
     setTimeout(() => {
-      // tslint:disable-next-line: radix
-      this.musicaId(parseInt(this.id));
       event.target.complete();
     }, 2000);
   }
