@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { Grupo } from 'src/app/model/grupo';
 import { MusicaService } from 'src/app/services/musica.service';
-import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Grupo } from 'src/app/model/grupo';
 
 @Component({
-  selector: 'app-editargrupo',
-  templateUrl: './editargrupo.page.html',
-  styleUrls: ['./editargrupo.page.scss'],
+  selector: 'app-novogrupo',
+  templateUrl: './novogrupo.page.html',
+  styleUrls: ['./novogrupo.page.scss'],
 })
-export class EditargrupoPage implements OnInit {
+export class NovogrupoPage implements OnInit {
 
   public formGroup: FormGroup;
-  public id = '';
   public grupo: Grupo = {
     id: null,
     nome: ''
@@ -22,7 +21,6 @@ export class EditargrupoPage implements OnInit {
 
   constructor(
     private loadingController: LoadingController,
-    private activatedRoute: ActivatedRoute,
     private musicaService: MusicaService,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController,
@@ -34,33 +32,14 @@ export class EditargrupoPage implements OnInit {
     });
    }
 
-
-
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    // tslint:disable-next-line: radix
-    this.grupoId(parseInt(this.id));
-  }
-  public async grupoId(id: number) {
-    await this.presentLoading();
-    try {
-      await this.musicaService.grupoId(id)
-        .subscribe((response: Grupo) => {
-          this.grupo = response;
-          console.log(this.grupo);
-        },
-          error => {
-          });
-    } finally {
-      this.loading.dismiss();
-    }
   }
 
-  public async updateGrupo() {
+  public async novoGrupo() {
     await this.presentLoading();
     try {
       console.log(this.grupo)
-      await this.musicaService.atualizarGrupo(this.grupo)
+      await this.musicaService.novoGrupo(this.grupo)
         .subscribe(response => {
           this.showInsertOk();
           this.navCtrl.navigateRoot('/tabs/tab4');
@@ -83,7 +62,6 @@ export class EditargrupoPage implements OnInit {
     console.log('Begin async operation');
     setTimeout(() => {
       // tslint:disable-next-line: radix
-      this.grupoId(parseInt(this.id));
       event.target.complete();
     }, 2000);
   }
@@ -101,6 +79,5 @@ export class EditargrupoPage implements OnInit {
       return alert.present();
     });
     }
-
 
 }

@@ -9,7 +9,6 @@ import { Categoria } from './../model/categoria';
 import { Observable } from 'rxjs';
 import { MusicaNova } from './../model/MusicaNova';
 
-
 @Injectable({
     providedIn: 'root'
   })
@@ -60,6 +59,15 @@ import { MusicaNova } from './../model/MusicaNova';
 
         public novaMusica(mus: MusicaNova) {
             return this.http.post(`${API_CONFIG.baseUrl}/musicas`, mus,
+                {
+                    observe: 'response',
+                    responseType: 'text'
+                }
+            );
+        }
+
+        public novoGrupo(grupo: Grupo) {
+            return this.http.post(`${API_CONFIG.baseUrl}/grupos`, grupo,
                 {
                     observe: 'response',
                     responseType: 'text'
