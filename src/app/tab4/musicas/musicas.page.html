@@ -17,7 +17,7 @@
   </ion-refresher>
   <br>
   <ion-toolbar>
-    <ion-searchbar placeholder="Pesquisa" showCancelButton="focus" color="dark" cancelButtonText="Cancelar">
+    <ion-searchbar #pesquisa (keyup)="getPesquisa(pesquisa.value)" placeholder="Pesquisa" color="dark" cancelButtonText="Cancelar">
     </ion-searchbar>
   </ion-toolbar>
   <ion-list>

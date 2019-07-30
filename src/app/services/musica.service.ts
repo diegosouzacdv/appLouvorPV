@@ -8,6 +8,7 @@ import { Grupo } from '../model/grupo';
 import { Categoria } from './../model/categoria';
 import { Observable } from 'rxjs';
 import { MusicaNova } from './../model/MusicaNova';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,9 @@ import { MusicaNova } from './../model/MusicaNova';
         public http: HttpClient,
         public storage: StorageService){}
 
-        public todasMusicas(): Observable<MusicasAllDto> {
-            return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas/page`);
+        public todasMusicas(nome: string): Observable<MusicasAllDto> {
+            return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas/page?nome=${nome}`)
+                .pipe(map((response: MusicasAllDto) => response), retry(10));
         }
 
         public musicasId(id: number): Observable<Musica> {
