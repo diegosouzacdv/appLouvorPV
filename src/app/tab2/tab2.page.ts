@@ -30,7 +30,8 @@ export class Tab2Page implements OnInit {
     try {
       await this.musicaService.todasMusicas()
         .subscribe((response: MusicasAllDto) => {
-          this.musicas = response;
+          // tslint:disable-next-line: no-string-literal
+          this.musicas = response['content'];
           console.log(response);
         },
         error => {

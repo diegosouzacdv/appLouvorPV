@@ -18,7 +18,7 @@ import { MusicaNova } from './../model/MusicaNova';
         public storage: StorageService){}
 
         public todasMusicas(): Observable<MusicasAllDto> {
-            return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas`);
+            return this.http.get<MusicasAllDto>(`${API_CONFIG.baseUrl}/musicas/page`);
         }
 
         public musicasId(id: number): Observable<Musica> {
