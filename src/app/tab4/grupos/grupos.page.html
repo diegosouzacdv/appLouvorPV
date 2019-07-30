@@ -7,9 +7,15 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button color="danger" [routerLink]="['/novogrupo']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <br>
   <ion-toolbar>
     <ion-searchbar placeholder="Pesquisa" showCancelButton="focus" color="dark" cancelButtonText="Cancelar">
     </ion-searchbar>

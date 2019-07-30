@@ -1,50 +1,56 @@
 <ion-header>
-    <ion-toolbar color="dark">
-      <ion-title>
-        Repertórios
-      </ion-title>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <ion-toolbar>
-        <ion-searchbar placeholder="Pesquisa" showCancelButton="focus" color="dark" cancelButtonText="Cancelar">
-        </ion-searchbar>
-      </ion-toolbar>
-      <ion-list lines="none">
-        <ion-card *ngFor="let repertorio of repertorios" [routerLink]="['/editarrepertorio', repertorio.id]"
-          routerDirection="forward">
-          <div>
-            <ion-item-divider color="primary">
-              <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
-              <ion-label>{{repertorio?.data}}</ion-label>
-            </ion-item-divider>
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <label>Musicas:</label>
-                  <ion-item *ngFor="let musica of repertorio.musicasRepertorio; index as i;">
-                    {{musica.musica.nome}} - {{musica.musica.grupo.nome}}
-                    <ion-note slot="end">{{musica.musica.notaTocada}}</ion-note>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  <p><strong>Total de Músicas: {{repertorio.totalMusicas}}</strong></p>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </div>
-        </ion-card>
-  
-      </ion-list>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Repertórios
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  
-  </ion-content>
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" edge slot="fixed">
+    <ion-fab-button color="danger" [routerLink]="['/novorepertorio']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <br>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Pesquisa" showCancelButton="focus" color="dark" cancelButtonText="Cancelar">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-list lines="none">
+    <ion-card *ngFor="let repertorio of repertorios" [routerLink]="['/editarrepertorio', repertorio.id]"
+      routerDirection="forward">
+      <div>
+        <ion-item-divider color="primary">
+          <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
+          <ion-label>{{repertorio?.data}}</ion-label>
+        </ion-item-divider>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <label>Musicas:</label>
+              <ion-item *ngFor="let musica of repertorio.musicasRepertorio; index as i;">
+                {{musica.musica.nome}} - {{musica.musica.grupo.nome}}
+                <ion-note slot="end">{{musica.musica.notaTocada}}</ion-note>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p><strong>Total de Músicas: {{repertorio.totalMusicas}}</strong></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card>
+
+  </ion-list>
+
+
+</ion-content>
