@@ -18,14 +18,14 @@
             </ion-input>
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" margin-left>
-            Valor inválido</p>
+            E-mail é obrigatório</p>
 
           <ion-item class="ion-margin-top" lines="none">
             <ion-input type="password" placeholder="Senha" [(ngModel)]="userLogin.senha" formControlName="senha">
             </ion-input>
           </ion-item>
           <p class="danger" *ngIf="formGroup.controls['senha'].dirty && formGroup.controls['senha'].errors" margin-left>
-            Valor inválido</p>
+              Senha é obrigatória</p>
 
           <ion-button class="ion-margin-top" (click)="login()" expand="block">
             Entrar

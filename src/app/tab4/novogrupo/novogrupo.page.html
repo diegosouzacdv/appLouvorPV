@@ -32,12 +32,14 @@
                 </ion-label>
                 <ion-input required type="text" formControlName="nome" [(ngModel)]="grupo.nome" name="nome"></ion-input>
               </ion-item>
+              <p class="danger" *ngIf="formGroup.controls['nome'].dirty && formGroup.controls['nome'].errors" margin-left>
+                  Nome é obrigatório</p>
             </ion-col>
           </ion-row>
         </ion-list>
       </ion-card>
     </form>
-    <ion-button padding expand="block" (click)="novoGrupo()">
+    <ion-button padding expand="block" (click)="novoGrupo()" [disabled]="formGroup.invalid">
       Salvar</ion-button>
     <ion-item-divider>
     </ion-item-divider>

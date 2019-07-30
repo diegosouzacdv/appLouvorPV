@@ -19,7 +19,10 @@ const routes: Routes = [
   { path: 'editarmusica/:id', loadChildren: './tab4/musicas/editar-musica/editar-musica.module#EditarMusicaPageModule' },
   { path: 'novamusica', loadChildren: './tab4/novamusica/novamusica.module#NovamusicaPageModule' },
   { path: 'grupos', loadChildren: './tab4/grupos/grupos.module#GruposPageModule' },
-  { path: 'editargrupo/:id', loadChildren: './tab4/grupos/editargrupo/editargrupo.module#EditargrupoPageModule' },  { path: 'novogrupo', loadChildren: './tab4/novogrupo/novogrupo.module#NovogrupoPageModule' },
+  { path: 'editargrupo/:id', loadChildren: './tab4/grupos/editargrupo/editargrupo.module#EditargrupoPageModule' },
+  { path: 'novogrupo', loadChildren: './tab4/novogrupo/novogrupo.module#NovogrupoPageModule' },
+  { path: 'repertorios', loadChildren: './tab4/repertorios/repertorios.module#RepertoriosPageModule' },
+  { path: 'editarrepertorio/:id', loadChildren: './tab4/repertorios/editarrepertorio/editarrepertorio.module#EditarrepertorioPageModule' },
 
 
 
