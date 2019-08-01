@@ -6,7 +6,6 @@ import { Musica } from '../model/Musica';
 import { AuthService } from '../services/auth.service';
 import { Subject, Observable, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
-import { RouterOutlet, Router, ActivationStart } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -14,8 +13,6 @@ import { RouterOutlet, Router, ActivationStart } from '@angular/router';
   styleUrls: ['./tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
-
-  @ViewChild(RouterOutlet) outlet: RouterOutlet;
 
   public loading: any;
   public mus: Observable<MusicasAllDto>;
@@ -27,15 +24,9 @@ export class Tab2Page implements OnInit {
     private loadingController: LoadingController,
     private musicaService: MusicaService,
     private authService: AuthService,
-    private router: Router
   ) { }
 
   ngOnInit() {
-
-    this.router.events.subscribe(e => {
-      if (e instanceof ActivationStart && e.snapshot.outlet === "administration")
-        this.outlet.deactivate();
-    });
 
     this.todasMusicas();
     this.mus = this.pesquisa

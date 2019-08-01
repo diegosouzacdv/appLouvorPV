@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavController, MenuController, IonSlides, LoadingController, ToastController, AlertController } from '@ionic/angular';
+import { NavController, IonSlides, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { User } from '../model/user';
 import { AuthService } from './../services/auth.service';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
@@ -38,7 +38,6 @@ export class LoginPage implements OnInit {
               private usuarioService: UsuarioService,
               private authService: AuthService,
               public navCtrl: NavController,
-              public menu: MenuController,
               public formBuilder: FormBuilder,
               public loginGuard: LoginGuard
   ) {
@@ -117,10 +116,6 @@ export class LoginPage implements OnInit {
       message: 'Por favor, aguarde...'
     });
     return this.loading.present();
-  }
-
-  public ionViewWillEnter() {
-    this.menu.swipeEnable(false);
   }
 }
 

@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
 import { AuthGuard } from '../guards/auth.guard';
-import { LoginGuard } from '../guards/login.guard';
 
 const routes: Routes = [
   {
