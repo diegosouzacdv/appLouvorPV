@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { MusicaService } from '../services/musica.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
@@ -6,6 +6,7 @@ import { Musica } from '../model/Musica';
 import { AuthService } from '../services/auth.service';
 import { Subject, Observable, of } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
+import { RouterOutlet, Router, ActivationStart } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -13,6 +14,8 @@ import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/
   styleUrls: ['./tab2.page.scss'],
 })
 export class Tab2Page implements OnInit {
+
+  @ViewChild(RouterOutlet) outlet: RouterOutlet;
 
   public loading: any;
   public mus: Observable<MusicasAllDto>;
@@ -23,10 +26,17 @@ export class Tab2Page implements OnInit {
   constructor(
     private loadingController: LoadingController,
     private musicaService: MusicaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+
+    this.router.events.subscribe(e => {
+      if (e instanceof ActivationStart && e.snapshot.outlet === "administration")
+        this.outlet.deactivate();
+    });
+
     this.todasMusicas();
     this.mus = this.pesquisa
       .pipe(
@@ -88,7 +98,7 @@ export class Tab2Page implements OnInit {
   public doRefresh(event) {
     console.log('Begin async operation');
     setTimeout(() => {
-      this.todasMusicas(this.filter);
+      this.todasMusicas();
       event.target.complete();
     }, 2000);
   }
