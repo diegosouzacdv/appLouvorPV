@@ -118,10 +118,6 @@ export class LoginPage implements OnInit {
     });
     return this.loading.present();
   }
-
-  public ionViewWillEnter() {
-    this.menu.swipeEnable(false);
-  }
 }
 
 

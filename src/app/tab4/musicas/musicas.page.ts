@@ -27,22 +27,20 @@ export class MusicasPage implements OnInit {
   ngOnInit() {
     this.todasMusicas();
     this.mus = this.pesquisa
-    .pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((termo: string) =>  {
-      return this.musicaService.todasMusicas(termo)
-    }),
-    catchError ((erro) => {
-      console.log(erro)
-      return of<MusicasAllDto>()
-     })
-    )
-    
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((termo: string) =>  {
+        return this.musicaService.todasMusicas(termo);
+      }),
+      catchError ((erro) => {
+        return of<MusicasAllDto>();
+       })
+      );
     this.mus.subscribe((musicas: MusicasAllDto) => {
-      console.log(musicas)
-      this.musicas = musicas['content'];
-    })
+        // tslint:disable-next-line: no-string-literal
+        this.musicas = musicas['content'];
+      });
   }
 
   public async getPesquisa(nome: string){

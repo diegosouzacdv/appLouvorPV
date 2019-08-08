@@ -14,17 +14,10 @@
       <ion-card>
         <ion-item-divider color="primary">
           <ion-icon slot="start" color="light" name="clipboard"></ion-icon>
-          <ion-label>Editar</ion-label>
+          <ion-label>Novo</ion-label>
         </ion-item-divider>
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
           <ion-row>
-            <ion-col size="3">
-              <ion-item>
-                <ion-label position="stacked">ID<ion-text color="primary"></ion-text>
-                </ion-label>
-                <ion-input disabled type="text" formControlName="id" name="id"></ion-input>
-              </ion-item>
-            </ion-col>
             <ion-col>
               <ion-item>
                 <ion-label position="stacked">Nome<ion-text color="danger">*</ion-text>
@@ -108,7 +101,7 @@
               </ion-item>
             </ion-col>
             <ion-col size="2">
-              <ion-chip (click)="navegadorApp(musica.estudo.letra)">
+              <ion-chip (click)="navegadorApp(musica.estudo.letra)" *ngIf="musica.estudo.letra" >
                 <ion-icon name="open" color="dark"></ion-icon>
               </ion-chip>
             </ion-col>
@@ -120,7 +113,7 @@
               </ion-item>
             </ion-col>
             <ion-col size="2">
-              <ion-chip (click)="navegadorApp(musica.estudo.cifra)">
+              <ion-chip (click)="navegadorApp(musica.estudo.cifra)" *ngIf="musica.estudo.cifra">
                 <ion-icon name="open" color="dark"></ion-icon>
               </ion-chip>
             </ion-col>
@@ -133,7 +126,7 @@
               </ion-item>
             </ion-col>
             <ion-col size="2">
-              <ion-chip (click)="navegadorApp(musica.estudo.guiaVocal)">
+              <ion-chip (click)="navegadorApp(musica.estudo.guiaVocal)" *ngIf="musica.estudo.guiaVocal">
                 <ion-icon name="open" color="dark"></ion-icon>
               </ion-chip>
             </ion-col>
@@ -146,7 +139,7 @@
               </ion-item>
             </ion-col>
             <ion-col size="2">
-              <ion-chip (click)="navegadorApp(musica.estudo.guiaInstrumental)">
+              <ion-chip (click)="navegadorApp(musica.estudo.guiaInstrumental)" *ngIf="musica.estudo.guiaInstrumental">
                 <ion-icon name="open" color="dark"></ion-icon>
               </ion-chip>
             </ion-col>

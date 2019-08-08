@@ -103,7 +103,7 @@ export class Tab1Page implements OnInit {
         },
           error => { });
     } else {
-      this.authService.logout()
+      this.authService.logout();
     }
   }
 
@@ -143,9 +143,6 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  public ionViewWillEnter() {
-    this.menu.swipeEnable(false);
-  }
 
   public logout() {
     // tslint:disable-next-line: no-unused-expression

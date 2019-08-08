@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -8,13 +8,10 @@ import { MenuController } from '@ionic/angular';
 })
 export class TabsPage implements OnInit {
 
-  constructor(public menu: MenuController) { }
+  constructor() {
+   }
 
   ngOnInit() {
   }
-
-  public ionViewWillEnter() {
-    this.menu.swipeEnable(false);
-   }
 
 }

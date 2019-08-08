@@ -86,23 +86,27 @@
           <ion-text color="primary">
             <label>Violão:</label>
           </ion-text>
-          <ion-col size="6" *ngFor="let violao of musica?.tutorial.violao; index as i;">
-            <ion-chip (click)="navegadorApp(violao)">
-              <ion-icon name="open" color="dark"></ion-icon>
-              <ion-label>Violão {{i + 1}}</ion-label>
-            </ion-chip>
-          </ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let violao of musica?.tutorial.violao; index as i;">
+              <ion-chip (click)="navegadorApp(violao)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>Violão {{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
         </ion-col>
         <ion-col size="6">
           <ion-text color="primary">
             <label>Teclado:</label>
           </ion-text>
-          <ion-col size="6" *ngFor="let teclado of musica?.tutorial.teclado; index as i;">
-            <ion-chip (click)="navegadorApp(teclado)">
-              <ion-icon name="open" color="dark"></ion-icon>
-              <ion-label>Teclado {{i + 1}}</ion-label>
-            </ion-chip>
-          </ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let teclado of musica?.tutorial.teclado; index as i;">
+              <ion-chip (click)="navegadorApp(teclado)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>Teclado {{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -110,23 +114,27 @@
           <ion-text color="primary">
             <label>Guitarra:</label>
           </ion-text>
-          <ion-col size="6" *ngFor="let guitarra of musica?.tutorial.guitarra; index as i;">
-            <ion-chip (click)="navegadorApp(guitarra)">
-              <ion-icon name="open" color="dark"></ion-icon>
-              <ion-label>Guitarra {{i + 1}}</ion-label>
-            </ion-chip>
-          </ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let guitarra of musica?.tutorial.guitarra; index as i;">
+              <ion-chip (click)="navegadorApp(guitarra)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>Guitarra {{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
         </ion-col>
         <ion-col size="6">
           <ion-text color="primary">
             <label>Baixo:</label>
           </ion-text>
-          <ion-col size="6" *ngFor="let baixo of musica?.tutorial.baixo; index as i;">
-            <ion-chip (click)="navegadorApp(baixo)">
-              <ion-icon name="open" color="dark"></ion-icon>
-              <ion-label>Baixo {{i + 1}}</ion-label>
-            </ion-chip>
-          </ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let baixo of musica?.tutorial.baixo; index as i;">
+              <ion-chip (click)="navegadorApp(baixo)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>Baixo {{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -134,12 +142,14 @@
           <ion-text color="primary">
             <label>Bateria:</label>
           </ion-text>
-          <ion-col size="6" *ngFor="let bateria of musica?.tutorial.bateria; index as i;">
-            <ion-chip (click)="navegadorApp(bateria)">
-              <ion-icon name="open" color="dark"></ion-icon>
-              <ion-label>Bateria {{i + 1}}</ion-label>
-            </ion-chip>
-          </ion-col>
+          <ion-row>
+            <ion-col size="6" *ngFor="let bateria of musica?.tutorial.bateria; index as i;">
+              <ion-chip (click)="navegadorApp(bateria)">
+                <ion-icon name="open" color="dark"></ion-icon>
+                <ion-label>Bateria {{i + 1}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
         </ion-col>
       </ion-row>
     </ion-grid>

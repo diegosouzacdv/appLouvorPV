@@ -6,8 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
-import { AuthGuard } from '../guards/auth.guard';
-import { LoginGuard } from '../guards/login.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +17,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule', canActivate: [AuthGuard]
+            loadChildren: '../tab1/tab1.module#Tab1PageModule'
           }
         ]
       },
@@ -28,7 +26,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule', canActivate: [AuthGuard]
+            loadChildren: '../tab2/tab2.module#Tab2PageModule'
           }
         ]
       },
@@ -37,7 +35,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule', canActivate: [AuthGuard]
+            loadChildren: '../tab3/tab3.module#Tab3PageModule'
           }
         ]
       },
@@ -46,7 +44,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../tab4/tab4.module#Tab4PageModule', canActivate: [AuthGuard]
+            loadChildren: '../tab4/tab4.module#Tab4PageModule'
           }
         ]
       },

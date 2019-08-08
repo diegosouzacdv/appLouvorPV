@@ -33,23 +33,20 @@ export class Tab2Page implements OnInit {
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((termo: string) =>  {
-        return this.musicaService.todasMusicas(termo)
+        return this.musicaService.todasMusicas(termo);
       }),
       catchError ((erro) => {
-        console.log(erro)
-        return of<MusicasAllDto>()
+        return of<MusicasAllDto>();
        })
-      )
-      
-      this.mus.subscribe((musicas: MusicasAllDto) => {
-        console.log(musicas)
+      );
+    this.mus.subscribe((musicas: MusicasAllDto) => {
+        // tslint:disable-next-line: no-string-literal
         this.musicas = musicas['content'];
-      })
-    //this.todasMusicas(this.filter);
+      });
   }
 
   public async getPesquisa(nome: string){
-    this.pesquisa.next(nome)
+    this.pesquisa.next(nome);
   }
 
   public async todasMusicas(){
@@ -88,7 +85,7 @@ export class Tab2Page implements OnInit {
   public doRefresh(event) {
     console.log('Begin async operation');
     setTimeout(() => {
-      this.todasMusicas(this.filter);
+      this.todasMusicas();
       event.target.complete();
     }, 2000);
   }
