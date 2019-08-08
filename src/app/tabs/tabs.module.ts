@@ -6,6 +6,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
+<<<<<<< HEAD
+=======
+import { AuthGuard } from '../guards/auth.guard';
+>>>>>>> aa3a92fdd35044720844326a03b27e68ef5d3dfa
 
 const routes: Routes = [
   {

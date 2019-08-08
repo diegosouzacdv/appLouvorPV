@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { MusicaService } from '../services/musica.service';
 import { MusicasAllDto } from './../model/MusicasAll.dto';
@@ -23,10 +23,11 @@ export class Tab2Page implements OnInit {
   constructor(
     private loadingController: LoadingController,
     private musicaService: MusicaService,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
+
     this.todasMusicas();
     this.mus = this.pesquisa
       .pipe(
